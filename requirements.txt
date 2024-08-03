@@ -1,3 +1,7 @@
 pyqt5
-PyQt5Designer
 requests
+
+
+
+
+PyQt5Designer
