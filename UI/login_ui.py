@@ -38,6 +38,7 @@ class Ui_Login_window(object):
 "color: rgba(22, 25, 50, 1);\n"
 "\n"
 "padding: 5px 10px;")
+        self.email_input.setPlaceholderText("")
         self.email_input.setObjectName("email_input")
         self.password_label = QtWidgets.QLabel(self.centralwidget)
         self.password_label.setGeometry(QtCore.QRect(110, 340, 91, 31))
@@ -56,14 +57,14 @@ class Ui_Login_window(object):
         self.password_input.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
         self.password_input.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password_input.setObjectName("password_input")
-        self.submit_button = QtWidgets.QPushButton(self.centralwidget)
-        self.submit_button.setGeometry(QtCore.QRect(110, 500, 331, 41))
-        self.submit_button.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f20089, stop:0.5 #b100e8, stop:1 #6a00f4);\n"
+        self.login_button = QtWidgets.QPushButton(self.centralwidget)
+        self.login_button.setGeometry(QtCore.QRect(110, 500, 331, 41))
+        self.login_button.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f20089, stop:0.5 #b100e8, stop:1 #6a00f4);\n"
 "\n"
 "border-radius: 20px;\n"
 "font-size: 20px;\n"
 "color: rgba(254, 254, 254, 1);")
-        self.submit_button.setObjectName("submit_button")
+        self.login_button.setObjectName("login_button")
         self.signup_button = QtWidgets.QPushButton(self.centralwidget)
         self.signup_button.setGeometry(QtCore.QRect(140, 760, 261, 51))
         self.signup_button.setStyleSheet("font-size:10pt;\n"
@@ -87,5 +88,5 @@ class Ui_Login_window(object):
         self.title.setText(_translate("Login_window", "Bull Dashboard"))
         self.email_label.setText(_translate("Login_window", "Email"))
         self.password_label.setText(_translate("Login_window", "password"))
-        self.submit_button.setText(_translate("Login_window", "Log in"))
+        self.login_button.setText(_translate("Login_window", "Log in"))
         self.signup_button.setText(_translate("Login_window", "Don\'t have an account? Crreate one here"))

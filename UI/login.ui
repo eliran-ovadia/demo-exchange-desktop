@@ -72,6 +72,9 @@ color: rgba(22, 25, 50, 1);
 
 padding: 5px 10px;</string>
     </property>
+    <property name="placeholderText">
+     <string/>
+    </property>
    </widget>
    <widget class="QLabel" name="password_label">
     <property name="geometry">
@@ -115,7 +118,7 @@ padding: 5px 10px;</string>
      <enum>QLineEdit::Password</enum>
     </property>
    </widget>
-   <widget class="QPushButton" name="submit_button">
+   <widget class="QPushButton" name="login_button">
     <property name="geometry">
      <rect>
       <x>110</x>
