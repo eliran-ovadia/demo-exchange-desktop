@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Main_window</class>
- <widget class="QMainWindow" name="Main_window">
+ <class>Signup_window</class>
+ <widget class="QMainWindow" name="Signup_window">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -129,7 +129,7 @@ color: rgba(254, 254, 254, 1);</string>
      <string>Sign up</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Register_button">
+   <widget class="QPushButton" name="login_button">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -203,6 +203,9 @@ font-size:15pt;
 color: rgba(22, 25, 50, 1);
 
 padding: 5px 10px;</string>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
     </property>
    </widget>
    <widget class="QLabel" name="password_label">
