@@ -14,22 +14,22 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Signup_window(object):
     def setupUi(self, Signup_window):
         Signup_window.setObjectName("Signup_window")
-        Signup_window.resize(545, 847)
+        Signup_window.resize(439, 828)
         Signup_window.setStyleSheet("background-color: rgba(254, 254, 254, 1);")
         self.centralwidget = QtWidgets.QWidget(Signup_window)
         self.centralwidget.setObjectName("centralwidget")
         self.title = QtWidgets.QLabel(self.centralwidget)
-        self.title.setGeometry(QtCore.QRect(80, 60, 381, 51))
+        self.title.setGeometry(QtCore.QRect(30, 40, 381, 51))
         self.title.setStyleSheet("color: rgba(22, 25, 50, 1);\n"
 "font-size: 28pt;")
         self.title.setObjectName("title")
         self.first_name_label = QtWidgets.QLabel(self.centralwidget)
-        self.first_name_label.setGeometry(QtCore.QRect(110, 160, 101, 31))
+        self.first_name_label.setGeometry(QtCore.QRect(50, 140, 101, 31))
         self.first_name_label.setStyleSheet("font-size:15pt;\n"
 "color: rgba(22, 25, 50, 1);")
         self.first_name_label.setObjectName("first_name_label")
         self.first_name_input = QtWidgets.QLineEdit(self.centralwidget)
-        self.first_name_input.setGeometry(QtCore.QRect(110, 200, 331, 41))
+        self.first_name_input.setGeometry(QtCore.QRect(50, 180, 331, 41))
         self.first_name_input.setStyleSheet("border-radius: 20px;\n"
 "background-color:rgba(240, 240, 240, 1);\n"
 "\n"
@@ -39,12 +39,12 @@ class Ui_Signup_window(object):
 "padding: 5px 10px;")
         self.first_name_input.setObjectName("first_name_input")
         self.last_name_label = QtWidgets.QLabel(self.centralwidget)
-        self.last_name_label.setGeometry(QtCore.QRect(110, 280, 101, 31))
+        self.last_name_label.setGeometry(QtCore.QRect(50, 250, 101, 31))
         self.last_name_label.setStyleSheet("font-size:15pt;\n"
 "color: rgba(22, 25, 50, 1);")
         self.last_name_label.setObjectName("last_name_label")
         self.last_name_input = QtWidgets.QLineEdit(self.centralwidget)
-        self.last_name_input.setGeometry(QtCore.QRect(110, 320, 331, 41))
+        self.last_name_input.setGeometry(QtCore.QRect(50, 300, 331, 41))
         self.last_name_input.setStyleSheet("border-radius: 20px;\n"
 "background-color:rgba(240, 240, 240, 1);\n"
 "\n"
@@ -55,15 +55,17 @@ class Ui_Signup_window(object):
         self.last_name_input.setObjectName("last_name_input")
         self.submit_button = QtWidgets.QPushButton(self.centralwidget)
         self.submit_button.setEnabled(True)
-        self.submit_button.setGeometry(QtCore.QRect(110, 660, 331, 41))
+        self.submit_button.setGeometry(QtCore.QRect(50, 610, 331, 71))
         self.submit_button.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f20089, stop:0.5 #b100e8, stop:1 #6a00f4);\n"
 "\n"
 "border-radius: 20px;\n"
 "font-size: 20px;\n"
-"color: rgba(254, 254, 254, 1);")
+"color: rgba(254, 254, 254, 1);\n"
+"margin-top: 15px;\n"
+"margin-bottom: 15px;")
         self.submit_button.setObjectName("submit_button")
         self.login_button = QtWidgets.QPushButton(self.centralwidget)
-        self.login_button.setGeometry(QtCore.QRect(140, 760, 261, 51))
+        self.login_button.setGeometry(QtCore.QRect(80, 720, 261, 51))
         self.login_button.setStyleSheet("font-size:10pt;\n"
 "color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f20089, stop:0.5 #b100e8, stop:1 #6a00f4);\n"
 "text-decoration: underline;\n"
@@ -72,7 +74,7 @@ class Ui_Signup_window(object):
 "")
         self.login_button.setObjectName("login_button")
         self.email_input = QtWidgets.QLineEdit(self.centralwidget)
-        self.email_input.setGeometry(QtCore.QRect(110, 440, 331, 41))
+        self.email_input.setGeometry(QtCore.QRect(50, 410, 331, 41))
         self.email_input.setStyleSheet("border-radius: 20px;\n"
 "background-color:rgba(240, 240, 240, 1);\n"
 "\n"
@@ -82,12 +84,12 @@ class Ui_Signup_window(object):
 "padding: 5px 10px;")
         self.email_input.setObjectName("email_input")
         self.email_label = QtWidgets.QLabel(self.centralwidget)
-        self.email_label.setGeometry(QtCore.QRect(110, 400, 51, 31))
+        self.email_label.setGeometry(QtCore.QRect(50, 370, 51, 31))
         self.email_label.setStyleSheet("font-size:15pt;\n"
 "color: rgba(22, 25, 50, 1);")
         self.email_label.setObjectName("email_label")
         self.password_input = QtWidgets.QLineEdit(self.centralwidget)
-        self.password_input.setGeometry(QtCore.QRect(110, 560, 331, 41))
+        self.password_input.setGeometry(QtCore.QRect(50, 530, 331, 41))
         self.password_input.setStyleSheet("border-radius: 20px;\n"
 "background-color:rgba(240, 240, 240, 1);\n"
 "\n"
@@ -98,7 +100,7 @@ class Ui_Signup_window(object):
         self.password_input.setEchoMode(QtWidgets.QLineEdit.Password)
         self.password_input.setObjectName("password_input")
         self.password_label = QtWidgets.QLabel(self.centralwidget)
-        self.password_label.setGeometry(QtCore.QRect(110, 520, 91, 31))
+        self.password_label.setGeometry(QtCore.QRect(50, 480, 91, 31))
         self.password_label.setStyleSheet("font-size:15pt;\n"
 "color: rgba(22, 25, 50, 1);")
         self.password_label.setObjectName("password_label")
