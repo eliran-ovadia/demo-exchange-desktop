@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\elira\Desktop\python\PYQT5_NEW_UI\UI\signup.ui'
+# Form implementation generated from reading ui file 'c:\Users\eliran\Desktop\python\PYQT5_NEW_UI\UI\signup.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -53,17 +53,17 @@ class Ui_Signup_window(object):
 "\n"
 "padding: 5px 10px;")
         self.last_name_input.setObjectName("last_name_input")
-        self.submit_button = QtWidgets.QPushButton(self.centralwidget)
-        self.submit_button.setEnabled(True)
-        self.submit_button.setGeometry(QtCore.QRect(50, 610, 331, 71))
-        self.submit_button.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f20089, stop:0.5 #b100e8, stop:1 #6a00f4);\n"
+        self.signup_button = QtWidgets.QPushButton(self.centralwidget)
+        self.signup_button.setEnabled(True)
+        self.signup_button.setGeometry(QtCore.QRect(50, 610, 331, 71))
+        self.signup_button.setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 #f20089, stop:0.5 #b100e8, stop:1 #6a00f4);\n"
 "\n"
 "border-radius: 20px;\n"
 "font-size: 20px;\n"
 "color: rgba(254, 254, 254, 1);\n"
 "margin-top: 15px;\n"
 "margin-bottom: 15px;")
-        self.submit_button.setObjectName("submit_button")
+        self.signup_button.setObjectName("signup_button")
         self.login_button = QtWidgets.QPushButton(self.centralwidget)
         self.login_button.setGeometry(QtCore.QRect(80, 720, 261, 51))
         self.login_button.setStyleSheet("font-size:10pt;\n"
@@ -118,7 +118,7 @@ class Ui_Signup_window(object):
         self.title.setText(_translate("Signup_window", "Sign up to start trading"))
         self.first_name_label.setText(_translate("Signup_window", "First name"))
         self.last_name_label.setText(_translate("Signup_window", "Last name"))
-        self.submit_button.setText(_translate("Signup_window", "Sign up"))
+        self.signup_button.setText(_translate("Signup_window", "Sign up"))
         self.login_button.setText(_translate("Signup_window", "Already have an account? Log in here"))
         self.email_label.setText(_translate("Signup_window", "Email"))
         self.password_label.setText(_translate("Signup_window", "password"))
