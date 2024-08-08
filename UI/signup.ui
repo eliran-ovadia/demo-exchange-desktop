@@ -28,7 +28,8 @@
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgba(22, 25, 50, 1);
-font-size: 28pt;</string>
+font-size: 28pt;
+background-color: transparent;</string>
     </property>
     <property name="text">
      <string>Sign up to start trading</string>
@@ -45,7 +46,8 @@ font-size: 28pt;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size:15pt;
-color: rgba(22, 25, 50, 1);</string>
+color: rgba(22, 25, 50, 1);
+background-color: transparent;</string>
     </property>
     <property name="text">
      <string>First name</string>
@@ -81,7 +83,8 @@ padding: 5px 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size:15pt;
-color: rgba(22, 25, 50, 1);</string>
+color: rgba(22, 25, 50, 1);
+background-color: transparent;</string>
     </property>
     <property name="text">
      <string>Last name</string>
@@ -182,7 +185,8 @@ padding: 5px 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size:15pt;
-color: rgba(22, 25, 50, 1);</string>
+color: rgba(22, 25, 50, 1);
+background-color: transparent;</string>
     </property>
     <property name="text">
      <string>Email</string>
@@ -221,7 +225,8 @@ padding: 5px 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size:15pt;
-color: rgba(22, 25, 50, 1);</string>
+color: rgba(22, 25, 50, 1);
+background-color: transparent;</string>
     </property>
     <property name="text">
      <string>password</string>

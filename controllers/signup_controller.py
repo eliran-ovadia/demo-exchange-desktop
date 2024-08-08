@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from widgets.loader import LoaderWidget
 from PyQt5.QtCore import QThreadPool, pyqtSlot
 from UI.signup_ui import Ui_Signup_window
@@ -28,7 +28,7 @@ class SignupApp(QMainWindow):
         return True
 
     def perform_signup(self):
-        self.ui.login_button.hide()
+        #self.ui.signup_button.hide() not needed
         self.loader_widget.start()
         username = self.ui.email_input.text()
         password = self.ui.password_input.text()
@@ -40,12 +40,21 @@ class SignupApp(QMainWindow):
 
     @pyqtSlot(bool, dict)
     def on_signup_complete(self, success, data):
+        print(data)
         self.loader_widget.stop()
         if success:
-            self.main_controller.show_login_window()
+            self.main_controller.show_signup_success_popup()
         else:
-            self.display_error("There was a problem") #add logic to indicate used email
+            self.display_error(data)
 
     def display_error(self, message):
-        self.ui.login_button.show()
-        self.ui.login_button.setText(message)
+        self.ui.signup_button.show()
+        self.ui.signup_button.setStyleSheet(Design.red_button_style)
+        error_message = message.get('detail', 'An error has occurred')
+
+        # Check if 'detail' is a list of validation errors
+        if isinstance(error_message, list):
+            error_message = error_message[0].get('msg', 'An error has occurred')
+        elif isinstance(error_message, dict):
+            error_message = error_message.get('msg', 'An error has occurred')
+        self.ui.signup_button.setText(error_message)

@@ -21,12 +21,14 @@ class Ui_Signup_window(object):
         self.title = QtWidgets.QLabel(self.centralwidget)
         self.title.setGeometry(QtCore.QRect(30, 40, 381, 51))
         self.title.setStyleSheet("color: rgba(22, 25, 50, 1);\n"
-"font-size: 28pt;")
+"font-size: 28pt;\n"
+"background-color: transparent;")
         self.title.setObjectName("title")
         self.first_name_label = QtWidgets.QLabel(self.centralwidget)
         self.first_name_label.setGeometry(QtCore.QRect(50, 140, 101, 31))
         self.first_name_label.setStyleSheet("font-size:15pt;\n"
-"color: rgba(22, 25, 50, 1);")
+"color: rgba(22, 25, 50, 1);\n"
+"background-color: transparent;")
         self.first_name_label.setObjectName("first_name_label")
         self.first_name_input = QtWidgets.QLineEdit(self.centralwidget)
         self.first_name_input.setGeometry(QtCore.QRect(50, 180, 331, 41))
@@ -41,7 +43,8 @@ class Ui_Signup_window(object):
         self.last_name_label = QtWidgets.QLabel(self.centralwidget)
         self.last_name_label.setGeometry(QtCore.QRect(50, 250, 101, 31))
         self.last_name_label.setStyleSheet("font-size:15pt;\n"
-"color: rgba(22, 25, 50, 1);")
+"color: rgba(22, 25, 50, 1);\n"
+"background-color: transparent;")
         self.last_name_label.setObjectName("last_name_label")
         self.last_name_input = QtWidgets.QLineEdit(self.centralwidget)
         self.last_name_input.setGeometry(QtCore.QRect(50, 300, 331, 41))
@@ -86,7 +89,8 @@ class Ui_Signup_window(object):
         self.email_label = QtWidgets.QLabel(self.centralwidget)
         self.email_label.setGeometry(QtCore.QRect(50, 370, 51, 31))
         self.email_label.setStyleSheet("font-size:15pt;\n"
-"color: rgba(22, 25, 50, 1);")
+"color: rgba(22, 25, 50, 1);\n"
+"background-color: transparent;")
         self.email_label.setObjectName("email_label")
         self.password_input = QtWidgets.QLineEdit(self.centralwidget)
         self.password_input.setGeometry(QtCore.QRect(50, 530, 331, 41))
@@ -102,7 +106,8 @@ class Ui_Signup_window(object):
         self.password_label = QtWidgets.QLabel(self.centralwidget)
         self.password_label.setGeometry(QtCore.QRect(50, 480, 91, 31))
         self.password_label.setStyleSheet("font-size:15pt;\n"
-"color: rgba(22, 25, 50, 1);")
+"color: rgba(22, 25, 50, 1);\n"
+"background-color: transparent;")
         self.password_label.setObjectName("password_label")
         Signup_window.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Signup_window)

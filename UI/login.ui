@@ -48,7 +48,8 @@ font-size: 28pt;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size:15pt;
-color: rgba(22, 25, 50, 1);</string>
+color: rgba(22, 25, 50, 1);
+background-color: transparent;</string>
     </property>
     <property name="text">
      <string>Email</string>
@@ -87,7 +88,8 @@ padding: 5px 10px;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size:15pt;
-color: rgba(22, 25, 50, 1);</string>
+color: rgba(22, 25, 50, 1);
+background-color: transparent;</string>
     </property>
     <property name="text">
      <string>password</string>

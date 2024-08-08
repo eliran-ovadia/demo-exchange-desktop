@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\elira\Desktop\python\PYQT5_NEW_UI\UI\login.ui'
+# Form implementation generated from reading ui file 'c:\Users\eliran\Desktop\python\PYQT5_NEW_UI\UI\login.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -27,7 +27,8 @@ class Ui_Login_window(object):
         self.email_label = QtWidgets.QLabel(self.centralwidget)
         self.email_label.setGeometry(QtCore.QRect(60, 160, 51, 31))
         self.email_label.setStyleSheet("font-size:15pt;\n"
-"color: rgba(22, 25, 50, 1);")
+"color: rgba(22, 25, 50, 1);\n"
+"background-color: transparent;")
         self.email_label.setObjectName("email_label")
         self.email_input = QtWidgets.QLineEdit(self.centralwidget)
         self.email_input.setGeometry(QtCore.QRect(50, 200, 331, 43))
@@ -43,7 +44,8 @@ class Ui_Login_window(object):
         self.password_label = QtWidgets.QLabel(self.centralwidget)
         self.password_label.setGeometry(QtCore.QRect(50, 280, 91, 31))
         self.password_label.setStyleSheet("font-size:15pt;\n"
-"color: rgba(22, 25, 50, 1);")
+"color: rgba(22, 25, 50, 1);\n"
+"background-color: transparent;")
         self.password_label.setObjectName("password_label")
         self.password_input = QtWidgets.QLineEdit(self.centralwidget)
         self.password_input.setGeometry(QtCore.QRect(50, 340, 331, 43))
