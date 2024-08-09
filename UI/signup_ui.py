@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Signup_window(object):
     def setupUi(self, Signup_window):
         Signup_window.setObjectName("Signup_window")
-        Signup_window.resize(439, 828)
+        Signup_window.resize(442, 804)
         Signup_window.setStyleSheet("background-color: rgba(254, 254, 254, 1);")
         self.centralwidget = QtWidgets.QWidget(Signup_window)
         self.centralwidget.setObjectName("centralwidget")
@@ -111,11 +111,19 @@ class Ui_Signup_window(object):
         self.password_label.setObjectName("password_label")
         Signup_window.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Signup_window)
+        self.statusbar.setAutoFillBackground(False)
+        self.statusbar.setStyleSheet("")
         self.statusbar.setObjectName("statusbar")
         Signup_window.setStatusBar(self.statusbar)
+        self.title.setBuddy(self.title)
 
         self.retranslateUi(Signup_window)
         QtCore.QMetaObject.connectSlotsByName(Signup_window)
+        Signup_window.setTabOrder(self.first_name_input, self.last_name_input)
+        Signup_window.setTabOrder(self.last_name_input, self.email_input)
+        Signup_window.setTabOrder(self.email_input, self.password_input)
+        Signup_window.setTabOrder(self.password_input, self.signup_button)
+        Signup_window.setTabOrder(self.signup_button, self.login_button)
 
     def retranslateUi(self, Signup_window):
         _translate = QtCore.QCoreApplication.translate

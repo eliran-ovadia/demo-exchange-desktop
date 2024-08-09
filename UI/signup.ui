@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>439</width>
-    <height>828</height>
+    <width>442</width>
+    <height>804</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,6 +33,9 @@ background-color: transparent;</string>
     </property>
     <property name="text">
      <string>Sign up to start trading</string>
+    </property>
+    <property name="buddy">
+     <cstring>title</cstring>
     </property>
    </widget>
    <widget class="QLabel" name="first_name_label">
@@ -233,8 +236,23 @@ background-color: transparent;</string>
     </property>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+  </widget>
  </widget>
+ <tabstops>
+  <tabstop>first_name_input</tabstop>
+  <tabstop>last_name_input</tabstop>
+  <tabstop>email_input</tabstop>
+  <tabstop>password_input</tabstop>
+  <tabstop>signup_button</tabstop>
+  <tabstop>login_button</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

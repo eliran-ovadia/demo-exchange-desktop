@@ -1,5 +1,6 @@
-from PyQt5.QtWidgets import QMainWindow
-from PyQt5.QtCore import QThreadPool, pyqtSlot
+from PyQt5.QtWidgets import QMainWindow, QShortcut
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtCore import QThreadPool, pyqtSlot, Qt
 from UI.login_ui import Ui_Login_window
 from workers.auth_worker import AuthWorker
 from widgets.loader import LoaderWidget
@@ -15,6 +16,9 @@ class LoginApp(QMainWindow):
         self.loader_widget = LoaderWidget("res/loader.gif", self, geometry=self.ui.login_button.geometry())
         self.ui.signup_button.clicked.connect(self.main_controller.show_signup_window)
         self.ui.login_button.clicked.connect(self.enter_dashboard)
+        # Create a shortcut for Enter key
+        self.enter_shortcut = QShortcut(QKeySequence(Qt.Key_Return), self)
+        self.enter_shortcut.activated.connect(self.enter_dashboard)
         
     def enter_dashboard(self):
         if self.validate_inputs():
