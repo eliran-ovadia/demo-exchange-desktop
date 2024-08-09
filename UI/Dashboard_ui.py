@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\elira\Desktop\python\PYQT5_NEW_UI\UI\Dashboard.ui'
+# Form implementation generated from reading ui file 'c:\Users\eliran\Desktop\python\PYQT5_NEW_UI\UI\Dashboard.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -14,27 +14,134 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dashboard_window(object):
     def setupUi(self, Dashboard_window):
         Dashboard_window.setObjectName("Dashboard_window")
-        Dashboard_window.resize(1388, 849)
+        Dashboard_window.resize(1027, 647)
         Dashboard_window.setStyleSheet("background-color: rgba(254, 254, 254, 1);")
         self.centralwidget = QtWidgets.QWidget(Dashboard_window)
+        self.centralwidget.setStyleSheet("*{\n"
+"    border: none;\n"
+"    background-color: transparent;\n"
+"    color: #fff;\n"
+"}\n"
+"#centralwidget{\n"
+"    background-color: #040f13;\n"
+"}\n"
+"#side_menu{\n"
+"    background-color: #071e26;\n"
+"    border-radius: 20px;\n"
+"}\n"
+"QPushButton{\n"
+"    padding: 10px;\n"
+"    background-color: #040f13;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"#main_body{\n"
+"    background-color: #071e26;\n"
+"    border-radius: 10px;\n"
+"}")
         self.centralwidget.setObjectName("centralwidget")
-        self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(20, 10, 301, 811))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(620, 280, 321, 201))
-        self.label.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.label.setStyleSheet("color: rgba(22, 25, 50, 1);\n"
-"font-size: 28pt;")
-        self.label.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.header = QtWidgets.QFrame(self.centralwidget)
+        self.header.setMinimumSize(QtCore.QSize(0, 50))
+        self.header.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.header.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.header.setObjectName("header")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.header)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.frame = QtWidgets.QFrame(self.header)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3.setSpacing(0)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setMinimumSize(QtCore.QSize(0, 30))
+        self.pushButton.setMaximumSize(QtCore.QSize(16777215, 30))
+        self.pushButton.setIconSize(QtCore.QSize(24, 24))
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_3.addWidget(self.pushButton)
+        self.horizontalLayout_2.addWidget(self.frame, 0, QtCore.Qt.AlignLeft)
+        self.frame_3 = QtWidgets.QFrame(self.header)
+        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_3.setObjectName("frame_3")
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.frame_3)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.label = QtWidgets.QLabel(self.frame_3)
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
+        font.setKerning(True)
+        self.label.setFont(font)
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
+        self.verticalLayout_4.addWidget(self.label)
+        self.horizontalLayout_2.addWidget(self.frame_3)
+        self.verticalLayout.addWidget(self.header)
+        self.frame_2 = QtWidgets.QFrame(self.centralwidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
+        self.frame_2.setSizePolicy(sizePolicy)
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.frame_2)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.side_menu = QtWidgets.QWidget(self.frame_2)
+        self.side_menu.setObjectName("side_menu")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.side_menu)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.frame_4 = QtWidgets.QFrame(self.side_menu)
+        self.frame_4.setMinimumSize(QtCore.QSize(100, 0))
+        self.frame_4.setMaximumSize(QtCore.QSize(150, 16777215))
+        self.frame_4.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_4.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_4.setObjectName("frame_4")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.frame_4)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame_4)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.verticalLayout_3.addWidget(self.pushButton_2)
+        self.pushButton_3 = QtWidgets.QPushButton(self.frame_4)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.verticalLayout_3.addWidget(self.pushButton_3)
+        self.pushButton_4 = QtWidgets.QPushButton(self.frame_4)
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.verticalLayout_3.addWidget(self.pushButton_4)
+        self.pushButton_5 = QtWidgets.QPushButton(self.frame_4)
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.verticalLayout_3.addWidget(self.pushButton_5)
+        self.verticalLayout_2.addWidget(self.frame_4, 0, QtCore.Qt.AlignTop)
+        self.horizontalLayout.addWidget(self.side_menu)
+        self.main_body = QtWidgets.QFrame(self.frame_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.main_body.sizePolicy().hasHeightForWidth())
+        self.main_body.setSizePolicy(sizePolicy)
+        self.main_body.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.main_body.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.main_body.setObjectName("main_body")
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.main_body)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.label_2 = QtWidgets.QLabel(self.main_body)
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout_4.addWidget(self.label_2)
+        self.horizontalLayout.addWidget(self.main_body)
+        self.verticalLayout.addWidget(self.frame_2)
         Dashboard_window.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(Dashboard_window)
-        self.statusbar.setObjectName("statusbar")
-        Dashboard_window.setStatusBar(self.statusbar)
 
         self.retranslateUi(Dashboard_window)
         QtCore.QMetaObject.connectSlotsByName(Dashboard_window)
@@ -42,4 +149,10 @@ class Ui_Dashboard_window(object):
     def retranslateUi(self, Dashboard_window):
         _translate = QtCore.QCoreApplication.translate
         Dashboard_window.setWindowTitle(_translate("Dashboard_window", "MainWindow"))
-        self.label.setText(_translate("Dashboard_window", "Dashboard"))
+        self.pushButton.setText(_translate("Dashboard_window", "Menu"))
+        self.label.setText(_translate("Dashboard_window", "MY APP"))
+        self.pushButton_2.setText(_translate("Dashboard_window", "Item1"))
+        self.pushButton_3.setText(_translate("Dashboard_window", "Item2"))
+        self.pushButton_4.setText(_translate("Dashboard_window", "Item3"))
+        self.pushButton_5.setText(_translate("Dashboard_window", "Item4"))
+        self.label_2.setText(_translate("Dashboard_window", "MAIN-BODY"))
