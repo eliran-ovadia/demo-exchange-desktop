@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\eliran\Desktop\python\PYQT5_NEW_UI\UI\signup.ui'
+# Form implementation generated from reading ui file 'c:\Users\elira\Desktop\python\PYQT5_NEW_UI\UI\signup.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
