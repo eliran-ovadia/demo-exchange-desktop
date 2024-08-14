@@ -1,2 +1,9 @@
 .venv
 DS_Store
+dashboard_controller.cpython-312.pyc
+login_controller.cpython-312.pyc
+main_controller.cpython-312.pyc
+signup_controller.cpython-312.pyc
+signup_success_popup.cpython-312.pyc
+
+
