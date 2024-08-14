@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'c:\Users\elira\Desktop\python\PYQT5_NEW_UI\UI\Dashboard.ui'
+# Form implementation generated from reading ui file 'c:\Users\eliran\Desktop\python\PYQT5_NEW_UI\UI\Dashboard.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -73,7 +73,7 @@ class Ui_dashboard_ui(object):
         self.logo_button.setStyleSheet("color: rgba(22, 25, 50, 1);\n"
 "font-size: 17pt;")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("c:\\Users\\elira\\Desktop\\python\\PYQT5_NEW_UI\\UI\\../res/icons/trending-up.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("c:\\Users\\eliran\\Desktop\\python\\PYQT5_NEW_UI\\UI\\../res/icons/trending-up.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.logo_button.setIcon(icon)
         self.logo_button.setIconSize(QtCore.QSize(40, 40))
         self.logo_button.setFlat(True)
@@ -229,7 +229,7 @@ class Ui_dashboard_ui(object):
         self.pushButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.pushButton.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("c:\\Users\\elira\\Desktop\\python\\PYQT5_NEW_UI\\UI\\../res/icons/sun.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap("c:\\Users\\eliran\\Desktop\\python\\PYQT5_NEW_UI\\UI\\../res/icons/sun.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon1)
         self.pushButton.setIconSize(QtCore.QSize(40, 40))
         self.pushButton.setFlat(True)
@@ -242,7 +242,7 @@ class Ui_dashboard_ui(object):
         self.profile_button.setFocusPolicy(QtCore.Qt.NoFocus)
         self.profile_button.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("c:\\Users\\elira\\Desktop\\python\\PYQT5_NEW_UI\\UI\\../res/icons/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap("c:\\Users\\eliran\\Desktop\\python\\PYQT5_NEW_UI\\UI\\../res/icons/user.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.profile_button.setIcon(icon2)
         self.profile_button.setIconSize(QtCore.QSize(40, 40))
         self.profile_button.setAutoDefault(False)
