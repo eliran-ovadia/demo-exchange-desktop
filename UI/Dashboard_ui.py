@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_dashboard_ui(object):
     def setupUi(self, dashboard_ui):
         dashboard_ui.setObjectName("dashboard_ui")
-        dashboard_ui.resize(1250, 782)
+        dashboard_ui.resize(1250, 948)
         dashboard_ui.setStyleSheet("background-color: rgb(254, 254, 254);")
         self.centralwidget = QtWidgets.QWidget(dashboard_ui)
         self.centralwidget.setStyleSheet("background-color: rgb(254, 254, 254);")
@@ -293,12 +293,13 @@ class Ui_dashboard_ui(object):
         self.verticalLayout_7 = QtWidgets.QVBoxLayout(self.main_right)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.watchlist_frame = QtWidgets.QFrame(self.main_right)
+        self.watchlist_frame.setMinimumSize(QtCore.QSize(0, 650))
         self.watchlist_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.watchlist_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.watchlist_frame.setObjectName("watchlist_frame")
         self.verticalLayout_7.addWidget(self.watchlist_frame)
         self.history_frame = QtWidgets.QFrame(self.main_right)
-        self.history_frame.setMaximumSize(QtCore.QSize(16777215, 200))
+        self.history_frame.setMinimumSize(QtCore.QSize(0, 200))
         self.history_frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.history_frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.history_frame.setObjectName("history_frame")

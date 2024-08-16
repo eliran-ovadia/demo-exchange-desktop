@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1250</width>
-    <height>782</height>
+    <height>948</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -747,6 +747,12 @@ font-size: 13pt;</string>
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
               <widget class="QFrame" name="watchlist_frame">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>650</height>
+                </size>
+               </property>
                <property name="frameShape">
                 <enum>QFrame::StyledPanel</enum>
                </property>
@@ -757,9 +763,9 @@ font-size: 13pt;</string>
              </item>
              <item>
               <widget class="QFrame" name="history_frame">
-               <property name="maximumSize">
+               <property name="minimumSize">
                 <size>
-                 <width>16777215</width>
+                 <width>0</width>
                  <height>200</height>
                 </size>
                </property>

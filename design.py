@@ -6,8 +6,11 @@
 
 class Design():
     
-    white_style = "#fefefe"
+    def __init__(self):
+        pass
     
+    
+    white_style = "#fefefe"
     pink_style = "#6a00f4"
     purple_style = "#b100e8"
     blue_style = "#F20089"
@@ -24,12 +27,12 @@ class Design():
         '#E500A4',
         '#F20089',]
     
-    red_pallete_style = [ "#e01e37", "#c71f37", "#ef233c"]
-
+    
+    red_button_style = [ "#e01e37", "#c71f37", "#ef233c"]
     red_button_style = (
         "QPushButton {"
         "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0,"
-        f"stop:0 {red_pallete_style[0]}, stop:0.5 {red_pallete_style[1]}, stop:1 {red_pallete_style[2]});"
+        f"stop:0 {red_button_style[0]}, stop:0.5 {red_button_style[1]}, stop:1 {red_button_style[2]});"
         "border-radius: 20px;"
         "font-size: 20px;"
         "color: rgba(254, 254, 254, 1);"
@@ -37,3 +40,11 @@ class Design():
         "margin-bottom: 15px;"
         "}"
     )
+    colorful_button_style = ["#f20089", "#b100e8", "#6a00f4"]
+    colorful_button_style = (
+        "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0,"
+        f"stop:0 {colorful_button_style[0]}, stop:0.5 {colorful_button_style[0]}, stop:1 {colorful_button_style[0]});"
+        "border-radius: 20px;"
+        "font-size: 20px;"
+        "color: rgba(254, 254, 254, 1);"
+        )
