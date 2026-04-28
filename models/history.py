@@ -4,18 +4,17 @@ from pydantic import BaseModel
 
 
 class Transaction(BaseModel):
-    id: str
     symbol: str
-    name: str
-    type: str
-    amount: int
     price: float
-    total: float
-    timestamp: datetime
+    amount: int
+    type: str
+    value: float
+    profit: float
+    time_stamp: datetime
 
 
-class HistoryPage(BaseModel):
-    items: list[Transaction]
-    total: int
+class HistoryResponse(BaseModel):
+    total_items: int
     page: int
-    size: int
+    page_size: int
+    history: list[Transaction]

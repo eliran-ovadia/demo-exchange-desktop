@@ -2,51 +2,60 @@ from __future__ import annotations
 from pydantic import BaseModel
 
 
-class Quote(BaseModel):
-    symbol: str
-    name: str
-    price: float
-    change: float
-    change_pct: float
+class ParsedQuoteResponse(BaseModel):
+    """Value in the dict[symbol, ParsedQuoteResponse] returned by /api/quote."""
+    full_name: str
+    exchange: str
+    currency: str
     open: float
     high: float
     low: float
+    close: float
     volume: int
-    market_cap: float | None = None
-    pe_ratio: float | None = None
-    week_52_high: float | None = None
-    week_52_low: float | None = None
+    change: float
+    percent_change: float
+    avg_volume: int
+    year_range_high: float | None = None
+    year_range_low: float | None = None
 
 
-class MarketStatus(BaseModel):
-    is_open: bool
-    message: str
+class MarketStatusResponse(BaseModel):
+    exchange: str | None = None
+    is_open: bool | None = None
 
 
 class SearchResult(BaseModel):
+    country: str
+    currency: str
+    exchange: str
+    instrument_name: str
     symbol: str
-    name: str
-    exchange: str | None = None
-    type: str | None = None
 
 
-class Mover(BaseModel):
+class SearchResponse(BaseModel):
+    total_results: int
+    page: int
+    page_size: int
+    results: list[SearchResult]
+
+
+class MarketMoverEntry(BaseModel):
     symbol: str
     name: str
     price: float
     change: float
-    change_pct: float
+    percent_change: float
 
 
-class MarketMovers(BaseModel):
-    gainers: list[Mover]
-    losers: list[Mover]
+class MarketMoversResponse(BaseModel):
+    stocks: list[MarketMoverEntry]
 
 
-class Sentiment(BaseModel):
+class SentimentEntry(BaseModel):
     symbol: str
-    consensus: str
-    buy: int
-    hold: int
-    sell: int
-    target_price: float | None = None
+    strongBuy: int = 0
+    buy: int = 0
+    hold: int = 0
+    sell: int = 0
+    strongSell: int = 0
+    consensus: str | None = None

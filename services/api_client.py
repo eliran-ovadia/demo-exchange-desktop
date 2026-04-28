@@ -36,12 +36,13 @@ class APIClient:
         path: str,
         *,
         json: Any = None,
+        data: dict | None = None,
         params: dict | None = None,
         auth: bool = True,
     ) -> Any:
         headers = self._auth_headers() if auth else {}
         response = await self._client.request(
-            method, path, json=json, params=params, headers=headers
+            method, path, json=json, data=data, params=params, headers=headers
         )
         if response.status_code >= 400:
             try:
@@ -59,7 +60,7 @@ class APIClient:
         return await self._request(
             "POST",
             "/token",
-            json={"username": email, "password": password},
+            data={"username": email, "password": password},
             auth=False,
         )
 
@@ -68,24 +69,48 @@ class APIClient:
             "POST", "/refresh", json={"refresh_token": refresh_token}, auth=False
         )
 
-    async def logout(self, refresh_token: str) -> None:
-        await self._request("POST", "/logout", json={"refresh_token": refresh_token})
+    async def logout(self, refresh_token: str | None = None) -> None:
+        # Access token goes in the Authorization header (auth=True).
+        # refresh_token is optional in the body.
+        body = {}
+        if refresh_token:
+            body["refresh_token"] = refresh_token
+        await self._request("POST", "/logout", json=body, auth=True)
 
     # ── Users ─────────────────────────────────────────────────
 
-    async def register(self, email: str, password: str, full_name: str) -> dict:
+    async def register(
+        self,
+        name: str,
+        last_name: str,
+        email: str,
+        password: str,
+        password_confirm: str,
+    ) -> dict:
         return await self._request(
             "POST",
             "/api/users",
-            json={"email": email, "password": password, "full_name": full_name},
+            json={
+                "name": name,
+                "last_name": last_name,
+                "email": email,
+                "password": password,
+                "password_confirm": password_confirm,
+            },
             auth=False,
         )
 
+    async def reset_portfolio(self) -> dict:
+        return await self._request("PATCH", "/api/portfolio/reset")
+
+    async def delete_account(self, email: str) -> dict:
+        return await self._request("DELETE", "/api/users", params={"email": email})
+
     # ── Portfolio ─────────────────────────────────────────────
 
-    async def get_portfolio(self, page: int = 1, size: int = 50) -> dict:
+    async def get_portfolio(self, page: int = 1, page_size: int = 50) -> dict:
         return await self._request(
-            "GET", "/api/portfolio", params={"page": page, "size": size}
+            "GET", "/api/portfolio", params={"page": page, "page_size": page_size}
         )
 
     # ── Orders ────────────────────────────────────────────────
@@ -99,42 +124,47 @@ class APIClient:
 
     # ── History ───────────────────────────────────────────────
 
-    async def get_history(self, page: int = 1, size: int = 50) -> dict:
+    async def get_history(self, page: int = 1, page_size: int = 50) -> dict:
         return await self._request(
-            "GET", "/api/history", params={"page": page, "size": size}
+            "GET", "/api/history", params={"page": page, "page_size": page_size}
         )
 
     # ── Watchlist ─────────────────────────────────────────────
 
-    async def get_watchlist(self, page: int = 1, size: int = 50) -> dict:
+    async def get_watchlist(self, page: int = 1, page_size: int = 50) -> dict:
         return await self._request(
-            "GET", "/api/watchlist", params={"page": page, "size": size}
+            "GET", "/api/watchlist", params={"page": page, "page_size": page_size}
         )
 
     async def add_to_watchlist(self, symbol: str) -> dict:
-        return await self._request("POST", "/api/watchlist", json={"symbol": symbol})
+        # Stock is Depends() on the backend — symbol is a query param, not JSON body
+        return await self._request("POST", "/api/watchlist", params={"symbol": symbol})
 
-    async def remove_from_watchlist(self, symbol: str) -> None:
-        await self._request("DELETE", "/api/watchlist", json={"symbol": symbol})
+    async def remove_from_watchlist(self, symbol: str) -> dict:
+        # Same: query param
+        return await self._request("DELETE", "/api/watchlist", params={"symbol": symbol})
 
     # ── Market data ───────────────────────────────────────────
 
     async def get_quote(self, symbol: str) -> dict:
+        # Returns dict[str, ParsedQuoteResponse] — keyed by symbol
         return await self._request("GET", "/api/quote", params={"symbol": symbol})
 
     async def get_market_status(self) -> dict:
         return await self._request("GET", "/api/market-status")
 
-    async def search(self, symbol: str) -> dict:
-        return await self._request("GET", "/api/search", params={"symbol": symbol})
+    async def search(self, symbol: str, page: int = 1, page_size: int = 20) -> dict:
+        return await self._request(
+            "GET", "/api/search", params={"symbol": symbol, "page": page, "page_size": page_size}
+        )
 
     async def get_market_movers(self) -> dict:
+        # Returns {"stocks": [{"symbol", "name", "price", "change", "percent_change"}, ...]}
         return await self._request("GET", "/api/market-movers")
 
     async def get_sentiment(self, symbol: str) -> dict:
-        return await self._request(
-            "GET", "/api/sentiment", params={"symbol": symbol}
-        )
+        # Returns {"symbol", "strongBuy", "buy", "hold", "sell", "strongSell", "consensus"}
+        return await self._request("GET", "/api/sentiment", params={"symbol": symbol})
 
     # ── Lifecycle ─────────────────────────────────────────────
 

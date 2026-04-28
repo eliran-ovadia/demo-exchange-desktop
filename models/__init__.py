@@ -1,22 +1,32 @@
 from models.auth import TokenPair
-from models.portfolio import PortfolioPage, Holding
-from models.order import OrderResult
-from models.history import HistoryPage, Transaction
-from models.watchlist import WatchlistPage, WatchlistItem
-from models.market import Quote, MarketStatus, SearchResult, MarketMovers, Sentiment
+from models.portfolio import PortfolioBalance, PortfolioResponse, Holding
+from models.order import AfterOrder
+from models.history import HistoryResponse, Transaction
+from models.watchlist import WatchlistResponse
+from models.market import (
+    ParsedQuoteResponse,
+    MarketStatusResponse,
+    SearchResult,
+    SearchResponse,
+    MarketMoverEntry,
+    MarketMoversResponse,
+    SentimentEntry,
+)
 
 __all__ = [
     "TokenPair",
-    "PortfolioPage",
+    "PortfolioBalance",
+    "PortfolioResponse",
     "Holding",
-    "OrderResult",
-    "HistoryPage",
+    "AfterOrder",
+    "HistoryResponse",
     "Transaction",
-    "WatchlistPage",
-    "WatchlistItem",
-    "Quote",
-    "MarketStatus",
+    "WatchlistResponse",
+    "ParsedQuoteResponse",
+    "MarketStatusResponse",
     "SearchResult",
-    "MarketMovers",
-    "Sentiment",
+    "SearchResponse",
+    "MarketMoverEntry",
+    "MarketMoversResponse",
+    "SentimentEntry",
 ]

@@ -91,8 +91,8 @@ class DashboardView(QMainWindow):
             price_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
             price_item.setFont(self._mono_font())
 
-            sign = "+" if m["change_pct"] >= 0 else ""
-            change_item = QTableWidgetItem(f"{sign}{m['change_pct']:.2f}%")
+            sign = "+" if m["percent_change"] >= 0 else ""
+            change_item = QTableWidgetItem(f"{sign}{m['percent_change']:.2f}%")
             change_item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
             change_item.setForeground(color)
             change_item.setFont(self._mono_font())

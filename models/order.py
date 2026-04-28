@@ -1,11 +1,10 @@
 from pydantic import BaseModel
 
 
-class OrderResult(BaseModel):
-    order_id: str
+class AfterOrder(BaseModel):
     symbol: str
+    price: float
     amount: int
     type: str
-    price: float
-    total: float
-    status: str
+    value: float
+    profit: float
