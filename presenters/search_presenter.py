@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 from services.api_client import api_client, APIError
+from models.market import SearchResponse, ParsedQuoteResponse, SentimentEntry
 
 if False:
     from views.search_view import SearchView
@@ -16,49 +17,64 @@ class SearchPresenter:
         self._view.set_loading_search(True)
         try:
             data = await api_client.search(query)
-            self._view.set_results(data.get("results", []))
+            resp = SearchResponse.model_validate(data)
+            self._view.set_results([r.model_dump() for r in resp.results])
         except APIError as e:
+            self._view.show_search_error(f"Search failed: {e.detail}")
             self._view.set_results([])
-        except Exception:
+        except Exception as e:
+            self._view.show_search_error(f"Search failed: {e}")
             self._view.set_results([])
         finally:
             self._view.set_loading_search(False)
 
     async def load_detail(self, symbol: str) -> None:
         self._selected_symbol = symbol
-        quote_data, sentiment_data = await asyncio.gather(
+        quote_raw, sentiment_raw = await asyncio.gather(
             api_client.get_quote(symbol),
             api_client.get_sentiment(symbol),
             return_exceptions=True,
         )
 
-        if isinstance(quote_data, dict):
-            q = quote_data.get(symbol.upper()) or next(iter(quote_data.values()), {})
-            self._view.set_detail(
-                symbol=symbol.upper(),
-                full_name=q.get("full_name", symbol),
-                close=q.get("close", 0.0),
-                change=q.get("change", 0.0),
-                percent_change=q.get("percent_change", 0.0),
-                open_=q.get("open", 0.0),
-                high=q.get("high", 0.0),
-                low=q.get("low", 0.0),
-            )
+        if not isinstance(quote_raw, Exception):
+            try:
+                raw = quote_raw.get(symbol.upper()) or next(iter(quote_raw.values()), None)
+                if raw:
+                    q = ParsedQuoteResponse.model_validate(raw)
+                    self._view.set_detail(
+                        symbol=symbol.upper(),
+                        full_name=q.full_name,
+                        close=q.close,
+                        change=q.change,
+                        percent_change=q.percent_change,
+                        open_=q.open,
+                        high=q.high,
+                        low=q.low,
+                    )
+            except Exception:
+                pass
 
-        if isinstance(sentiment_data, dict):
-            self._view.set_sentiment(
-                strong_buy=sentiment_data.get("strongBuy", 0),
-                buy=sentiment_data.get("buy", 0),
-                hold=sentiment_data.get("hold", 0),
-                sell=sentiment_data.get("sell", 0),
-                strong_sell=sentiment_data.get("strongSell", 0),
-                consensus=sentiment_data.get("consensus"),
-            )
+        if not isinstance(sentiment_raw, Exception):
+            try:
+                s = SentimentEntry.model_validate(sentiment_raw)
+                self._view.set_sentiment(
+                    strong_buy=s.strongBuy,
+                    buy=s.buy,
+                    hold=s.hold,
+                    sell=s.sell,
+                    strong_sell=s.strongSell,
+                    consensus=s.consensus,
+                )
+            except Exception:
+                pass
 
     async def add_to_watchlist(self) -> None:
         if not self._selected_symbol:
             return
         try:
             await api_client.add_to_watchlist(self._selected_symbol)
-        except (APIError, Exception):
-            pass
+            self._view.show_watchlist_result(True, f"{self._selected_symbol} added to watchlist.")
+        except APIError as e:
+            self._view.show_watchlist_result(False, f"Could not add: {e.detail}")
+        except Exception as e:
+            self._view.show_watchlist_result(False, f"Could not add: {e}")

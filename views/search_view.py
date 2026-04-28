@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
+from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QLabel
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
@@ -20,6 +20,17 @@ class SearchView(QWidget):
         self._setup_table()
         self._wire()
         self.detailPanel.setVisible(False)
+
+        self._search_error_label = QLabel("")
+        self._search_error_label.setObjectName("errorLabel")
+        self._search_error_label.setWordWrap(True)
+        self._search_error_label.setVisible(False)
+        self.layout().insertWidget(1, self._search_error_label)
+
+        self._watchlist_result_label = QLabel("")
+        self._watchlist_result_label.setWordWrap(True)
+        if self.detailPanel.layout():
+            self.detailPanel.layout().addWidget(self._watchlist_result_label)
 
     def _setup_table(self) -> None:
         h = self.resultsTable.horizontalHeader()
@@ -122,7 +133,19 @@ class SearchView(QWidget):
         self.consensusBadge.style().unpolish(self.consensusBadge)
         self.consensusBadge.style().polish(self.consensusBadge)
 
+    def show_search_error(self, message: str) -> None:
+        self._search_error_label.setText(message)
+        self._search_error_label.setVisible(bool(message))
+
+    def show_watchlist_result(self, success: bool, message: str) -> None:
+        self._watchlist_result_label.setText(message)
+        obj_name = "successLabel" if success else "errorLabel"
+        self._watchlist_result_label.setObjectName(obj_name)
+        self._watchlist_result_label.style().unpolish(self._watchlist_result_label)
+        self._watchlist_result_label.style().polish(self._watchlist_result_label)
+
     def set_loading_search(self, loading: bool) -> None:
+        self._search_error_label.setVisible(False)
         self.searchButton.setEnabled(not loading)
         self.searchButton.setText("Searching…" if loading else "Search")
 

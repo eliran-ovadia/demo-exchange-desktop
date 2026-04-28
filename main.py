@@ -26,6 +26,7 @@ def main() -> None:
     if auth_service.restore_session():
         from views.main_window_view import MainWindowView
         window = MainWindowView()
+        window.set_user_email(auth_service.load_email())
     else:
         from views.login_view import LoginView
         window = LoginView()
