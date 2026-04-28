@@ -152,16 +152,3 @@ pyinstaller DemoExchange.spec
 Output lands in `dist/DemoExchange` (or `dist/DemoExchange.exe` on Windows).
 
 > **Note:** PyInstaller builds for the OS you run it on. To produce a Windows `.exe`, build on a Windows machine or use a CI runner with a Windows environment (e.g. GitHub Actions).
-
----
-
-## Requirements
-
-```
-PyQt5
-qasync
-httpx
-keyring
-pydantic
-pyinstaller
-```
