@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from main import resource_path
 from presenters.history_presenter import HistoryPresenter
 
 _MONO = QFont("Consolas")
@@ -15,7 +16,7 @@ _MONO.setPointSize(13)
 class HistoryView(QWidget):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/history.ui", self)
+        uic.loadUi(resource_path("ui/history.ui"), self)
         self._error_label = QLabel("")
         self._error_label.setObjectName("errorLabel")
         self._error_label.setWordWrap(True)

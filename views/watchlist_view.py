@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from main import resource_path
 from presenters.watchlist_presenter import WatchlistPresenter
 
 _MONO = QFont("Consolas")
@@ -15,7 +16,7 @@ _MONO.setPointSize(13)
 class WatchlistView(QWidget):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/watchlist.ui", self)
+        uic.loadUi(resource_path("ui/watchlist.ui"), self)
         self._presenter = WatchlistPresenter(self)
         self._setup_table()
         self._wire()

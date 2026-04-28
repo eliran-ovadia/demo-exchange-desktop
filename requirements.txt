@@ -3,3 +3,4 @@ qasync
 httpx
 keyring
 pydantic
+pyinstaller

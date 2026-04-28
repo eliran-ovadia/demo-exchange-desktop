@@ -1,11 +1,16 @@
-import sys
+import sys, os
 import asyncio
 import qasync
 from PyQt5.QtWidgets import QApplication
 
 
+def resource_path(relative: str) -> str:
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, relative)
+
+
 def load_stylesheet(app: QApplication) -> None:
-    with open("styles/theme.qss", "r") as f:
+    with open(resource_path("styles/theme.qss"), "r") as f:
         app.setStyleSheet(f.read())
 
 

@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from main import resource_path
 from presenters.dashboard_presenter import DashboardPresenter
 
 _MONO = QFont("Consolas")
@@ -16,7 +17,7 @@ _REFRESH_INTERVAL_MS = 30_000
 class DashboardView(QWidget):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/dashboard.ui", self)
+        uic.loadUi(resource_path("ui/dashboard.ui"), self)
         self._presenter = DashboardPresenter(self)
         self._refresh_timer = QTimer(self)
         self._refresh_timer.setInterval(_REFRESH_INTERVAL_MS)

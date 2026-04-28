@@ -5,13 +5,14 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
+from main import resource_path
 from presenters.register_presenter import RegisterPresenter
 
 
 class RegisterView(QWidget):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/register.ui", self)
+        uic.loadUi(resource_path("ui/register.ui"), self)
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
         self.backButton.setFixedHeight(20)
         self.backButton.setCursor(Qt.PointingHandCursor)

@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from main import resource_path
 from presenters.search_presenter import SearchPresenter
 
 _MONO = QFont("Consolas")
@@ -15,7 +16,7 @@ _MONO.setPointSize(13)
 class SearchView(QWidget):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/search.ui", self)
+        uic.loadUi(resource_path("ui/search.ui"), self)
         self._presenter = SearchPresenter(self)
         self._setup_table()
         self._wire()
