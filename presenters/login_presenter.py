@@ -27,7 +27,7 @@ class LoginPresenter:
 
         try:
             await auth_service.login(email, password)
-            self._view.navigate_to_dashboard()
+            self._view.navigate_to_dashboard(email)
         except APIError as e:
             if e.status_code == 401:
                 self._view.show_error("Invalid email or password.")

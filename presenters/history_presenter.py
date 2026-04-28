@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import math
 from services.api_client import api_client
+from models.history import HistoryResponse
 
 if False:
     from views.history_view import HistoryView
@@ -19,9 +20,9 @@ class HistoryPresenter:
         self._view.set_loading(True)
         try:
             data = await api_client.get_history(page=self._page, page_size=PAGE_SIZE)
-            self._view.set_transactions(data.get("history", []))
-            total_items = data.get("total_items", 0)
-            self._total_pages = max(1, math.ceil(total_items / PAGE_SIZE))
+            resp = HistoryResponse.model_validate(data)
+            self._view.set_transactions([t.model_dump() for t in resp.history])
+            self._total_pages = max(1, math.ceil(resp.total_items / PAGE_SIZE))
             self._view.set_page_info(self._page, self._total_pages)
         except Exception as e:
             self._view.show_error(f"Failed to load history: {e}")

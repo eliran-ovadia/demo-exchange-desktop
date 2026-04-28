@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 from services.api_client import api_client, APIError
 
 if False:
@@ -40,7 +41,6 @@ class RegisterPresenter:
                 password_confirm=fields["password_confirm"],
             )
             self._view.show_success("Account created! Redirecting to sign in…")
-            import asyncio
             await asyncio.sleep(1.2)
             self._view.navigate_to_login()
         except APIError as e:

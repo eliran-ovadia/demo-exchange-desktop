@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import math
 from services.api_client import api_client
+from models.portfolio import PortfolioResponse
 
 if False:
     from views.portfolio_view import PortfolioView
@@ -19,17 +20,16 @@ class PortfolioPresenter:
         self._view.set_loading(True)
         try:
             data = await api_client.get_portfolio(page=self._page, page_size=PAGE_SIZE)
-            balance = data.get("balance", {})
+            resp = PortfolioResponse.model_validate(data)
             self._view.set_balance(
-                account_value=balance.get("account_value", 0.0),
-                buying_power=balance.get("buying_power", 0.0),
-                total_return=balance.get("total_return", 0.0),
-                total_return_pct=balance.get("total_return_percent", 0.0),
-                total_stocks=balance.get("total_stocks", 0),
+                account_value=resp.balance.account_value,
+                buying_power=resp.balance.buying_power,
+                total_return=resp.balance.total_return,
+                total_return_pct=resp.balance.total_return_percent,
+                total_stocks=resp.balance.total_stocks,
             )
-            self._view.set_holdings(data.get("portfolio", []))
-            total_items = balance.get("total_stocks", 0)
-            self._total_pages = max(1, math.ceil(total_items / PAGE_SIZE))
+            self._view.set_holdings([h.model_dump() for h in resp.portfolio])
+            self._total_pages = max(1, math.ceil(resp.balance.total_stocks / PAGE_SIZE))
             self._view.set_page_info(self._page, self._total_pages)
         except Exception as e:
             self._view.show_error(f"Failed to load portfolio: {e}")

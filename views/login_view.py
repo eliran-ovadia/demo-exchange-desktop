@@ -53,8 +53,10 @@ class LoginView(QWidget):
     def clear_error(self) -> None:
         self.errorLabel.setText("")
 
-    def navigate_to_dashboard(self) -> None:
+    def navigate_to_dashboard(self, email: str = "") -> None:
         from views.main_window_view import MainWindowView
         self._main = MainWindowView()
+        if email:
+            self._main.set_user_email(email)
         self._main.show()
         self.close()
