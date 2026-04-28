@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HistoryPage</class>
+ <widget class="QWidget" name="HistoryPage">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>880</width><height>720</height></rect>
+  </property>
+  <layout class="QVBoxLayout" name="contentLayout">
+   <property name="spacing"><number>20</number></property>
+   <property name="leftMargin"><number>32</number></property>
+   <property name="topMargin"><number>28</number></property>
+   <property name="rightMargin"><number>32</number></property>
+   <property name="bottomMargin"><number>28</number></property>
+
+   <item>
+    <widget class="QLabel" name="pageTitleLabel">
+     <property name="objectName"><string>heading2</string></property>
+     <property name="text"><string>History</string></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QTableWidget" name="historyTable">
+     <property name="columnCount"><number>7</number></property>
+     <property name="rowCount"><number>0</number></property>
+     <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+     <property name="selectionBehavior"><enum>QAbstractItemView::SelectRows</enum></property>
+     <property name="showGrid"><bool>false</bool></property>
+     <property name="sortingEnabled"><bool>true</bool></property>
+     <property name="alternatingRowColors"><bool>true</bool></property>
+     <attribute name="horizontalHeaderStretchLastSection"><bool>false</bool></attribute>
+     <column><property name="text"><string>Symbol</string></property></column>
+     <column><property name="text"><string>Type</string></property></column>
+     <column><property name="text"><string>Shares</string></property></column>
+     <column><property name="text"><string>Price</string></property></column>
+     <column><property name="text"><string>Value</string></property></column>
+     <column><property name="text"><string>Profit</string></property></column>
+     <column><property name="text"><string>Date &amp; Time</string></property></column>
+    </widget>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout" name="paginationLayout">
+     <item>
+      <widget class="QPushButton" name="prevButton">
+       <property name="objectName"><string>btnSecondary</string></property>
+       <property name="text"><string>← Previous</string></property>
+       <property name="enabled"><bool>false</bool></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="pageLabel">
+       <property name="objectName"><string>subtext</string></property>
+       <property name="text"><string>Page 1</string></property>
+       <property name="alignment"><set>Qt::AlignHCenter|Qt::AlignVCenter</set></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="nextButton">
+       <property name="objectName"><string>btnSecondary</string></property>
+       <property name="text"><string>Next →</string></property>
+       <property name="enabled"><bool>false</bool></property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacerPagination">
+       <property name="orientation"><enum>Qt::Horizontal</enum></property>
+       <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -48,7 +48,7 @@ class LoginView(QWidget):
         self.errorLabel.setText("")
 
     def navigate_to_dashboard(self) -> None:
-        from views.dashboard_view import DashboardView
-        self._dashboard = DashboardView()
-        self._dashboard.show()
+        from views.main_window_view import MainWindowView
+        self._main = MainWindowView()
+        self._main.show()
         self.close()

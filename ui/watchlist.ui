@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WatchlistPage</class>
+ <widget class="QWidget" name="WatchlistPage">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>880</width><height>720</height></rect>
+  </property>
+  <layout class="QVBoxLayout" name="contentLayout">
+   <property name="spacing"><number>20</number></property>
+   <property name="leftMargin"><number>32</number></property>
+   <property name="topMargin"><number>28</number></property>
+   <property name="rightMargin"><number>32</number></property>
+   <property name="bottomMargin"><number>28</number></property>
+
+   <item>
+    <widget class="QLabel" name="pageTitleLabel">
+     <property name="objectName"><string>heading2</string></property>
+     <property name="text"><string>Watchlist</string></property>
+    </widget>
+   </item>
+
+   <!-- Add symbol row -->
+   <item>
+    <layout class="QHBoxLayout" name="addLayout">
+     <property name="spacing"><number>12</number></property>
+     <item>
+      <widget class="QLineEdit" name="symbolInput">
+       <property name="placeholderText"><string>Add symbol (e.g. TSLA)</string></property>
+       <property name="maximumWidth"><number>260</number></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addButton">
+       <property name="objectName"><string>btnPrimary</string></property>
+       <property name="text"><string>Add</string></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="addResultLabel">
+       <property name="objectName"><string>successLabel</string></property>
+       <property name="text"><string></string></property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacerAdd">
+       <property name="orientation"><enum>Qt::Horizontal</enum></property>
+       <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+
+   <!-- Watchlist table -->
+   <item>
+    <widget class="QTableWidget" name="watchlistTable">
+     <property name="columnCount"><number>4</number></property>
+     <property name="rowCount"><number>0</number></property>
+     <property name="editTriggers"><set>QAbstractItemView::NoEditTriggers</set></property>
+     <property name="selectionBehavior"><enum>QAbstractItemView::SelectRows</enum></property>
+     <property name="showGrid"><bool>false</bool></property>
+     <property name="alternatingRowColors"><bool>true</bool></property>
+     <attribute name="horizontalHeaderStretchLastSection"><bool>true</bool></attribute>
+     <column><property name="text"><string>Symbol</string></property></column>
+     <column><property name="text"><string>Price</string></property></column>
+     <column><property name="text"><string>Change</string></property></column>
+     <column><property name="text"><string>Change %</string></property></column>
+    </widget>
+   </item>
+
+   <!-- Remove selected -->
+   <item>
+    <layout class="QHBoxLayout" name="removeLayout">
+     <item>
+      <widget class="QPushButton" name="removeButton">
+       <property name="objectName"><string>btnDanger</string></property>
+       <property name="text"><string>Remove Selected</string></property>
+       <property name="enabled"><bool>false</bool></property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacerRemove">
+       <property name="orientation"><enum>Qt::Horizontal</enum></property>
+       <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
