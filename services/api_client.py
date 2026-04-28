@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import httpx
-from typing import Any
+from typing import Any, Awaitable, Callable
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import Qt
 
 BASE_URL = "http://localhost:8000"
 TIMEOUT = 15.0
@@ -18,12 +20,17 @@ class APIClient:
     def __init__(self) -> None:
         self._client = httpx.AsyncClient(base_url=BASE_URL, timeout=TIMEOUT)
         self._access_token: str | None = None
+        self._refresh_hook: Callable[[], Awaitable[bool]] | None = None
 
     def set_token(self, token: str) -> None:
         self._access_token = token
 
     def clear_token(self) -> None:
         self._access_token = None
+
+    def set_refresh_hook(self, hook: Callable[[], Awaitable[bool]]) -> None:
+        """Register a coroutine that refreshes the access token. Called once on 401."""
+        self._refresh_hook = hook
 
     def _auth_headers(self) -> dict[str, str]:
         if self._access_token:
@@ -39,11 +46,26 @@ class APIClient:
         data: dict | None = None,
         params: dict | None = None,
         auth: bool = True,
+        _retry: bool = False,
     ) -> Any:
         headers = self._auth_headers() if auth else {}
-        response = await self._client.request(
-            method, path, json=json, data=data, params=params, headers=headers
-        )
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        try:
+            response = await self._client.request(
+                method, path, json=json, data=data, params=params, headers=headers
+            )
+        finally:
+            QApplication.restoreOverrideCursor()
+
+        # On 401, attempt one silent token refresh then retry
+        if response.status_code == 401 and auth and not _retry and self._refresh_hook:
+            refreshed = await self._refresh_hook()
+            if refreshed:
+                return await self._request(
+                    method, path, json=json, data=data,
+                    params=params, auth=auth, _retry=True,
+                )
+
         if response.status_code >= 400:
             try:
                 detail = response.json().get("detail", response.text)

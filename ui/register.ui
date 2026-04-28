@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RegisterWindow</class>
+ <widget class="QWidget" name="RegisterWindow">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>460</width><height>640</height></rect>
+  </property>
+  <property name="minimumSize">
+   <size><width>460</width><height>640</height></size>
+  </property>
+  <property name="windowTitle">
+   <string>Demo Exchange — Create Account</string>
+  </property>
+  <layout class="QVBoxLayout" name="rootLayout">
+   <property name="leftMargin"><number>44</number></property>
+   <property name="topMargin"><number>36</number></property>
+   <property name="rightMargin"><number>44</number></property>
+   <property name="bottomMargin"><number>36</number></property>
+   <property name="spacing"><number>0</number></property>
+
+   <item>
+    <widget class="QLabel" name="logoLabel">
+     <property name="objectName"><string>loginLogo</string></property>
+     <property name="text"><string>Demo Exchange</string></property>
+     <property name="alignment"><set>Qt::AlignHCenter</set></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="taglineLabel">
+     <property name="objectName"><string>loginTagline</string></property>
+     <property name="text"><string>Create your account</string></property>
+     <property name="alignment"><set>Qt::AlignHCenter</set></property>
+    </widget>
+   </item>
+
+   <item>
+    <spacer name="spacerTop">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0"><size><width>20</width><height>20</height></size></property>
+    </spacer>
+   </item>
+
+   <!-- First + Last name row -->
+   <item>
+    <layout class="QHBoxLayout" name="nameLayout">
+     <property name="spacing"><number>12</number></property>
+     <item>
+      <layout class="QVBoxLayout" name="firstNameLayout">
+       <property name="spacing"><number>4</number></property>
+       <item>
+        <widget class="QLabel" name="firstNameLabel">
+         <property name="text"><string>First Name</string></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="firstNameInput">
+         <property name="placeholderText"><string>Jane</string></property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="lastNameLayout">
+       <property name="spacing"><number>4</number></property>
+       <item>
+        <widget class="QLabel" name="lastNameLabel">
+         <property name="text"><string>Last Name</string></property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lastNameInput">
+         <property name="placeholderText"><string>Doe</string></property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+
+   <item>
+    <spacer name="spacerName">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property>
+    </spacer>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="emailLabel">
+     <property name="text"><string>Email</string></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="emailInput">
+     <property name="placeholderText"><string>you@example.com</string></property>
+    </widget>
+   </item>
+
+   <item>
+    <spacer name="spacerEmail">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property>
+    </spacer>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="passwordLabel">
+     <property name="text"><string>Password</string></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="passwordInput">
+     <property name="placeholderText"><string>••••••••</string></property>
+     <property name="echoMode"><enum>QLineEdit::Password</enum></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="passwordHintLabel">
+     <property name="objectName"><string>subtext</string></property>
+     <property name="text"><string>8+ chars · uppercase · lowercase · number · special character</string></property>
+     <property name="wordWrap"><bool>true</bool></property>
+    </widget>
+   </item>
+
+   <item>
+    <spacer name="spacerPwd">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0"><size><width>20</width><height>10</height></size></property>
+    </spacer>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="confirmLabel">
+     <property name="text"><string>Confirm Password</string></property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="confirmInput">
+     <property name="placeholderText"><string>••••••••</string></property>
+     <property name="echoMode"><enum>QLineEdit::Password</enum></property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="errorLabel">
+     <property name="objectName"><string>errorLabel</string></property>
+     <property name="text"><string></string></property>
+     <property name="alignment"><set>Qt::AlignHCenter</set></property>
+     <property name="wordWrap"><bool>true</bool></property>
+    </widget>
+   </item>
+
+   <item>
+    <spacer name="spacerBtn">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0"><size><width>20</width><height>12</height></size></property>
+    </spacer>
+   </item>
+
+   <item>
+    <widget class="QPushButton" name="createButton">
+     <property name="objectName"><string>btnPrimary</string></property>
+     <property name="text"><string>Create Account</string></property>
+     <property name="default"><bool>true</bool></property>
+    </widget>
+   </item>
+
+   <item>
+    <spacer name="spacerBack">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0"><size><width>20</width><height>8</height></size></property>
+    </spacer>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout" name="backLayout">
+     <item>
+      <spacer name="spacerBackL">
+       <property name="orientation"><enum>Qt::Horizontal</enum></property>
+       <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="backPromptLabel">
+       <property name="objectName"><string>subtext</string></property>
+       <property name="text"><string>Already have an account?</string></property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="backButton">
+       <property name="objectName"><string>btnGhost</string></property>
+       <property name="text"><string>Sign in</string></property>
+       <property name="flat"><bool>true</bool></property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacerBackR">
+       <property name="orientation"><enum>Qt::Horizontal</enum></property>
+       <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+
+   <item>
+    <spacer name="spacerBottom">
+     <property name="orientation"><enum>Qt::Vertical</enum></property>
+     <property name="sizeHint" stdset="0"><size><width>20</width><height>20</height></size></property>
+    </spacer>
+   </item>
+
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

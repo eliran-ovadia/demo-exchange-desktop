@@ -2,7 +2,6 @@ import sys
 import asyncio
 import qasync
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import QIcon
 
 
 def load_stylesheet(app: QApplication) -> None:
@@ -21,10 +20,16 @@ def main() -> None:
     loop = qasync.QEventLoop(app)
     asyncio.set_event_loop(loop)
 
-    # Import here so the event loop is already set when views initialize
-    from views.login_view import LoginView
+    # Import after event loop is set
+    from services.auth_service import auth_service
 
-    window = LoginView()
+    if auth_service.restore_session():
+        from views.main_window_view import MainWindowView
+        window = MainWindowView()
+    else:
+        from views.login_view import LoginView
+        window = LoginView()
+
     window.show()
 
     with loop:

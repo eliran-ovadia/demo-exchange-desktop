@@ -62,3 +62,5 @@ class AuthService:
 
 
 auth_service = AuthService()
+# Register the refresh hook so api_client can silently retry on 401
+api_client.set_refresh_hook(auth_service.refresh)
