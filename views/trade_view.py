@@ -19,6 +19,7 @@ class TradeView(QWidget):
         self._order_type = "buy"
         self.quoteCard.setVisible(False)
         self._wire()
+        self._set_order_type("buy")
 
     def _wire(self) -> None:
         self.getQuoteButton.clicked.connect(self._on_get_quote)

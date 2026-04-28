@@ -13,6 +13,8 @@ class RegisterView(QWidget):
         super().__init__()
         uic.loadUi("ui/register.ui", self)
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
+        self.backButton.setFixedHeight(20)
+        self.backButton.setCursor(Qt.PointingHandCursor)
         self._presenter = RegisterPresenter(self)
         self._wire()
 
