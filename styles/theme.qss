@@ -1,7 +1,6 @@
 /* ============================================================
    Demo Exchange — Light Professional Theme
    Design language: Robinhood / Fidelity fintech style
-   All dimensions in px; font stack leans on system sans-serif.
    ============================================================ */
 
 /* ── Global reset ─────────────────────────────────────────── */
@@ -14,8 +13,35 @@ QWidget {
     selection-color: #ffffff;
 }
 
-QMainWindow {
+QMainWindow, QDialog {
     background-color: #f5f7fa;
+}
+
+/* ── Base button fallback (catches any button without objectName) */
+QPushButton {
+    background-color: #ffffff;
+    color: #1a1a2e;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 40px;
+}
+QPushButton:hover {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+QPushButton:pressed {
+    background-color: #e2e8f0;
+}
+QPushButton:disabled {
+    background-color: #f8fafc;
+    color: #94a3b8;
+    border-color: #e2e8f0;
+}
+QPushButton:focus {
+    outline: none;
 }
 
 /* ── Card / panel surfaces ────────────────────────────────── */
@@ -31,34 +57,39 @@ QFrame#cardFlat {
     border-radius: 10px;
 }
 
-/* ── Typography helpers (set via objectName) ──────────────── */
+/* ── Typography helpers ───────────────────────────────────── */
 QLabel#heading1 {
     font-size: 26px;
     font-weight: 700;
     color: #1a1a2e;
+    background: transparent;
 }
 
 QLabel#heading2 {
     font-size: 20px;
     font-weight: 600;
     color: #1a1a2e;
+    background: transparent;
 }
 
 QLabel#heading3 {
     font-size: 16px;
     font-weight: 600;
     color: #1a1a2e;
+    background: transparent;
 }
 
 QLabel#subtext {
     font-size: 13px;
     color: #64748b;
+    background: transparent;
 }
 
 QLabel#mono {
-    font-family: "JetBrains Mono", "Fira Code", "Consolas", "Courier New", monospace;
+    font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
     font-size: 14px;
     color: #1a1a2e;
+    background: transparent;
 }
 
 QLabel#priceUp {
@@ -66,6 +97,7 @@ QLabel#priceUp {
     font-size: 14px;
     font-weight: 600;
     color: #16a34a;
+    background: transparent;
 }
 
 QLabel#priceDown {
@@ -73,6 +105,7 @@ QLabel#priceDown {
     font-size: 14px;
     font-weight: 600;
     color: #dc2626;
+    background: transparent;
 }
 
 QLabel#priceNeutral {
@@ -80,6 +113,7 @@ QLabel#priceNeutral {
     font-size: 14px;
     font-weight: 600;
     color: #64748b;
+    background: transparent;
 }
 
 QLabel#bigValue {
@@ -87,6 +121,7 @@ QLabel#bigValue {
     font-size: 32px;
     font-weight: 700;
     color: #1a1a2e;
+    background: transparent;
 }
 
 QLabel#errorLabel {
@@ -117,12 +152,11 @@ QPushButton#btnPrimary:hover {
 }
 QPushButton#btnPrimary:pressed {
     background-color: #1e3a8a;
-    padding-top: 12px;
-    padding-bottom: 8px;
 }
 QPushButton#btnPrimary:disabled {
     background-color: #94a3b8;
     color: #e2e8f0;
+    border: none;
 }
 
 /* ── Secondary button ─────────────────────────────────────── */
@@ -145,6 +179,7 @@ QPushButton#btnSecondary:pressed {
 QPushButton#btnSecondary:disabled {
     border-color: #cbd5e1;
     color: #94a3b8;
+    background-color: #f8fafc;
 }
 
 /* ── Buy / Sell action buttons ────────────────────────────── */
@@ -164,6 +199,11 @@ QPushButton#btnBuy:hover {
 QPushButton#btnBuy:pressed {
     background-color: #166534;
 }
+QPushButton#btnBuy:disabled {
+    background-color: #86efac;
+    color: #ffffff;
+    border: none;
+}
 
 QPushButton#btnSell {
     background-color: #dc2626;
@@ -181,6 +221,11 @@ QPushButton#btnSell:hover {
 QPushButton#btnSell:pressed {
     background-color: #991b1b;
 }
+QPushButton#btnSell:disabled {
+    background-color: #fca5a5;
+    color: #ffffff;
+    border: none;
+}
 
 /* ── Danger / ghost buttons ───────────────────────────────── */
 QPushButton#btnDanger {
@@ -196,32 +241,36 @@ QPushButton#btnDanger {
 QPushButton#btnDanger:hover {
     background-color: #fef2f2;
 }
+QPushButton#btnDanger:pressed {
+    background-color: #fee2e2;
+}
+QPushButton#btnDanger:disabled {
+    color: #fca5a5;
+    border-color: #fca5a5;
+    background-color: transparent;
+}
 
 QPushButton#btnGhost {
-    background-color: transparent;
-    color: #475569;
+    background: none;
     border: none;
-    padding: 8px 14px;
+    color: #1e3a8a;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 600;
+    padding: 0px;
+    margin: 0px;
+    min-height: 0px;
+    max-height: 20px;
+    min-width: 0px;
 }
 QPushButton#btnGhost:hover {
-    color: #1e3a8a;
-    background-color: #eff6ff;
-    border-radius: 6px;
-}
-
-/* ── Icon-only toolbar button ─────────────────────────────── */
-QPushButton#btnIcon {
-    background-color: transparent;
+    color: #2563eb;
+    background: none;
     border: none;
-    border-radius: 6px;
-    padding: 6px;
-    min-width: 32px;
-    min-height: 32px;
 }
-QPushButton#btnIcon:hover {
-    background-color: #e2e8f0;
+QPushButton#btnGhost:pressed {
+    color: #1e3a8a;
+    background: none;
+    border: none;
 }
 
 /* ── Line inputs ──────────────────────────────────────────── */
@@ -246,6 +295,9 @@ QLineEdit:disabled {
 }
 QLineEdit[echoMode="2"] {
     lineedit-password-character: 9679;
+}
+QLineEdit::placeholder {
+    color: #94a3b8;
 }
 
 /* ── Spin box ─────────────────────────────────────────────── */
@@ -278,6 +330,10 @@ QSpinBox::down-button, QDoubleSpinBox::down-button {
     border-top: 1px solid #e2e8f0;
     border-bottom-right-radius: 6px;
     background: #f8fafc;
+}
+QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover,
+QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover {
+    background: #e2e8f0;
 }
 
 /* ── Combo box ────────────────────────────────────────────── */
@@ -316,7 +372,7 @@ QTableWidget, QTableView {
     alternate-background-color: #f8fafc;
     border: 1px solid #e2e8f0;
     border-radius: 10px;
-    gridline-color: #e2e8f0;
+    gridline-color: transparent;
     selection-background-color: #eff6ff;
     selection-color: #1e3a8a;
     outline: none;
@@ -329,15 +385,22 @@ QTableWidget::item:selected, QTableView::item:selected {
     background-color: #eff6ff;
     color: #1e3a8a;
 }
+QTableWidget::item:hover, QTableView::item:hover {
+    background-color: #f8fafc;
+}
+QHeaderView {
+    background-color: transparent;
+    border: none;
+}
 QHeaderView::section {
     background-color: #f8fafc;
-    color: #475569;
+    color: #64748b;
     font-size: 12px;
     font-weight: 600;
-    text-transform: uppercase;
     padding: 8px 12px;
     border: none;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    text-transform: uppercase;
 }
 QHeaderView::section:first {
     border-top-left-radius: 10px;
@@ -345,17 +408,21 @@ QHeaderView::section:first {
 QHeaderView::section:last {
     border-top-right-radius: 10px;
 }
+QHeaderView::section:hover {
+    background-color: #f1f5f9;
+    color: #475569;
+}
 
 /* ── Scrollbars ───────────────────────────────────────────── */
 QScrollBar:vertical {
-    background: #f1f5f9;
-    width: 8px;
-    border-radius: 4px;
+    background: transparent;
+    width: 6px;
+    border-radius: 3px;
     margin: 0;
 }
 QScrollBar::handle:vertical {
     background: #cbd5e1;
-    border-radius: 4px;
+    border-radius: 3px;
     min-height: 32px;
 }
 QScrollBar::handle:vertical:hover {
@@ -366,14 +433,14 @@ QScrollBar::sub-line:vertical {
     height: 0;
 }
 QScrollBar:horizontal {
-    background: #f1f5f9;
-    height: 8px;
-    border-radius: 4px;
+    background: transparent;
+    height: 6px;
+    border-radius: 3px;
     margin: 0;
 }
 QScrollBar::handle:horizontal {
     background: #cbd5e1;
-    border-radius: 4px;
+    border-radius: 3px;
     min-width: 32px;
 }
 QScrollBar::handle:horizontal:hover {
@@ -384,39 +451,22 @@ QScrollBar::sub-line:horizontal {
     width: 0;
 }
 
-/* ── Tab widget ───────────────────────────────────────────── */
-QTabWidget::pane {
-    border: 1px solid #e2e8f0;
-    border-radius: 10px;
-    background-color: #ffffff;
-    top: -1px;
-}
-QTabBar::tab {
-    background-color: transparent;
-    color: #64748b;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    border: none;
-    border-bottom: 2px solid transparent;
-    margin-right: 4px;
-}
-QTabBar::tab:selected {
-    color: #1e3a8a;
-    border-bottom: 2px solid #1e3a8a;
-    font-weight: 600;
-}
-QTabBar::tab:hover:!selected {
-    color: #334155;
-    border-bottom: 2px solid #cbd5e1;
-}
-
 /* ── Sidebar navigation ───────────────────────────────────── */
 QFrame#sidebar {
     background-color: #1a1a2e;
     border: none;
-    min-width: 200px;
-    max-width: 200px;
+    border-right: 1px solid #252540;
+    min-width: 210px;
+    max-width: 210px;
+}
+
+/* All widgets inside the sidebar inherit the dark background */
+QFrame#sidebar QWidget {
+    background-color: transparent;
+    color: #94a3b8;
+}
+QFrame#sidebar QLabel {
+    background-color: transparent;
 }
 
 QPushButton#navItem {
@@ -425,43 +475,57 @@ QPushButton#navItem {
     border: none;
     border-radius: 8px;
     text-align: left;
-    padding: 10px 16px;
+    padding: 10px 14px;
     font-size: 14px;
     font-weight: 500;
     min-height: 42px;
 }
 QPushButton#navItem:hover {
-    background-color: #ffffff18;
+    background-color: #252540;
     color: #e2e8f0;
 }
+QPushButton#navItem:pressed {
+    background-color: #2a2a4e;
+    color: #ffffff;
+}
+
 QPushButton#navItemActive {
     background-color: #1e40af;
     color: #ffffff;
     border: none;
     border-radius: 8px;
     text-align: left;
-    padding: 10px 16px;
+    padding: 10px 14px;
     font-size: 14px;
     font-weight: 600;
     min-height: 42px;
 }
+QPushButton#navItemActive:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+QPushButton#navItemActive:pressed {
+    background-color: #1d4ed8;
+    color: #ffffff;
+}
 
 QLabel#sidebarLogo {
     color: #ffffff;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
-    padding: 8px 16px;
+    padding: 4px 14px 4px 14px;
     background: transparent;
+    letter-spacing: 0.3px;
 }
 
 QLabel#sidebarUser {
-    color: #94a3b8;
+    color: #64748b;
     font-size: 12px;
-    padding: 4px 16px;
+    padding: 4px 14px;
     background: transparent;
 }
 
-/* ── Status badge ─────────────────────────────────────────── */
+/* ── Status badges ────────────────────────────────────────── */
 QLabel#badgeOpen {
     background-color: #dcfce7;
     color: #166534;
@@ -513,19 +577,13 @@ QToolTip {
     font-size: 12px;
 }
 
-/* ── Message / status bar ─────────────────────────────────── */
-QStatusBar {
-    background-color: #f8fafc;
-    color: #64748b;
-    border-top: 1px solid #e2e8f0;
-    font-size: 12px;
-}
-
 /* ── Separator ────────────────────────────────────────────── */
 QFrame[frameShape="4"],
 QFrame[frameShape="5"] {
     color: #e2e8f0;
     background-color: #e2e8f0;
+    border: none;
+    max-height: 1px;
 }
 
 /* ── Splitter ─────────────────────────────────────────────── */
@@ -535,7 +593,7 @@ QSplitter::handle {
     height: 1px;
 }
 
-/* ── Login screen specific ────────────────────────────────── */
+/* ── Login / Register screens ─────────────────────────────── */
 QFrame#loginCard {
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
@@ -544,10 +602,11 @@ QFrame#loginCard {
 }
 
 QLabel#loginLogo {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
     color: #1e3a8a;
     background: transparent;
+    letter-spacing: -0.5px;
 }
 
 QLabel#loginTagline {
@@ -556,37 +615,25 @@ QLabel#loginTagline {
     background: transparent;
 }
 
-/* ── Stat card (dashboard widgets) ───────────────────────── */
+/* ── Stat cards ───────────────────────────────────────────── */
 QFrame#statCard {
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    padding: 4px;
 }
 
 QLabel#statLabel {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
-    color: #64748b;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: #94a3b8;
+    letter-spacing: 0.8px;
     background: transparent;
 }
 
 QLabel#statValue {
     font-family: "JetBrains Mono", "Fira Code", "Consolas", monospace;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: #1a1a2e;
     background: transparent;
-}
-
-/* ── Mover rows (market movers widget) ───────────────────── */
-QFrame#moverRow {
-    background-color: #ffffff;
-    border-bottom: 1px solid #f1f5f9;
-    border-radius: 0px;
-}
-QFrame#moverRow:hover {
-    background-color: #f8fafc;
 }

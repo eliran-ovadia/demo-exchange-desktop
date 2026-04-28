@@ -13,6 +13,8 @@ class LoginView(QWidget):
         super().__init__()
         uic.loadUi("ui/login.ui", self)
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
+        self.registerButton.setFixedHeight(20)
+        self.registerButton.setCursor(Qt.PointingHandCursor)
         self._presenter = LoginPresenter(self)
         self._wire()
 

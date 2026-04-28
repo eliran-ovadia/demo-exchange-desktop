@@ -95,8 +95,8 @@
        </item>
        <item>
         <widget class="QPushButton" name="logoutButton">
-         <property name="objectName"><string>btnGhost</string></property>
-         <property name="text"><string>Sign out</string></property>
+         <property name="objectName"><string>navItem</string></property>
+         <property name="text"><string>  Sign out</string></property>
         </widget>
        </item>
       </layout>

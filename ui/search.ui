@@ -26,7 +26,6 @@
      <item>
       <widget class="QLineEdit" name="searchInput">
        <property name="placeholderText"><string>Symbol or name (e.g. AAPL)</string></property>
-       <property name="maximumWidth"><number>320</number></property>
       </widget>
      </item>
      <item>
@@ -34,12 +33,6 @@
        <property name="objectName"><string>btnPrimary</string></property>
        <property name="text"><string>Search</string></property>
       </widget>
-     </item>
-     <item>
-      <spacer name="spacerSearch">
-       <property name="orientation"><enum>Qt::Horizontal</enum></property>
-       <property name="sizeHint" stdset="0"><size><width>40</width><height>20</height></size></property>
-      </spacer>
      </item>
     </layout>
    </item>

@@ -216,8 +216,8 @@
        <property name="text">
         <string>Create account</string>
        </property>
-       <property name="flat">
-        <bool>true</bool>
+       <property name="maximumHeight">
+        <number>22</number>
        </property>
       </widget>
      </item>
