@@ -37,7 +37,8 @@ class WatchlistPresenter:
                 else:
                     rows.append({"symbol": symbol, "close": 0.0, "change": 0.0, "percent_change": 0.0})
             self._view.set_rows(rows)
-        except Exception:
+        except Exception as e:
+            self._view.show_error(f"Failed to load watchlist: {e}")
             self._view.set_rows([])
         finally:
             self._view.set_loading(False)

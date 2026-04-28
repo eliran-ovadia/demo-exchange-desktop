@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import asyncio
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
@@ -10,6 +10,7 @@ from presenters.dashboard_presenter import DashboardPresenter
 
 _MONO = QFont("Consolas")
 _MONO.setPointSize(13)
+_REFRESH_INTERVAL_MS = 30_000
 
 
 class DashboardView(QWidget):
@@ -17,6 +18,11 @@ class DashboardView(QWidget):
         super().__init__()
         uic.loadUi("ui/dashboard.ui", self)
         self._presenter = DashboardPresenter(self)
+        self._refresh_timer = QTimer(self)
+        self._refresh_timer.setInterval(_REFRESH_INTERVAL_MS)
+        self._refresh_timer.timeout.connect(
+            lambda: asyncio.ensure_future(self._presenter.refresh_data())
+        )
         self._setup_tables()
 
     def _setup_tables(self) -> None:
@@ -29,6 +35,10 @@ class DashboardView(QWidget):
 
     def on_activated(self) -> None:
         asyncio.ensure_future(self._presenter.refresh_data())
+        self._refresh_timer.start()
+
+    def on_deactivated(self) -> None:
+        self._refresh_timer.stop()
 
     # ── Presenter API ──────────────────────────────────────────
 
@@ -73,6 +83,9 @@ class DashboardView(QWidget):
                     item.setForeground(fg)
                 table.setItem(row, col, item)
         table.setSortingEnabled(True)
+
+    def show_error(self, message: str) -> None:
+        self.accountValueAmount.setText(message)
 
     def show_loading(self, loading: bool) -> None:
         if loading:

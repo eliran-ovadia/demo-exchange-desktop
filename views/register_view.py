@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
@@ -15,6 +15,12 @@ class RegisterView(QWidget):
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
         self._presenter = RegisterPresenter(self)
         self._wire()
+
+    def showEvent(self, event) -> None:
+        super().showEvent(event)
+        screen = QApplication.desktop().screenGeometry()
+        self.move((screen.width() - self.width()) // 2,
+                  (screen.height() - self.height()) // 2)
 
     def _wire(self) -> None:
         self.createButton.clicked.connect(

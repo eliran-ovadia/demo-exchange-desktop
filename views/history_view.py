@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import asyncio
-from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
+from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QLabel
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
@@ -16,6 +16,11 @@ class HistoryView(QWidget):
     def __init__(self) -> None:
         super().__init__()
         uic.loadUi("ui/history.ui", self)
+        self._error_label = QLabel("")
+        self._error_label.setObjectName("errorLabel")
+        self._error_label.setWordWrap(True)
+        self._error_label.setVisible(False)
+        self.layout().insertWidget(1, self._error_label)
         self._presenter = HistoryPresenter(self)
         self._setup_table()
         self._wire()
@@ -86,7 +91,12 @@ class HistoryView(QWidget):
         self.prevButton.setEnabled(page > 1)
         self.nextButton.setEnabled(page < total_pages)
 
+    def show_error(self, message: str) -> None:
+        self._error_label.setText(message)
+        self._error_label.setVisible(bool(message))
+
     def set_loading(self, loading: bool) -> None:
         self.historyTable.setEnabled(not loading)
         if loading:
+            self._error_label.setVisible(False)
             self.historyTable.setRowCount(0)

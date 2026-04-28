@@ -22,8 +22,11 @@ class AuthService:
         api_client.set_token(access_token)
 
     def clear_tokens(self) -> None:
-        keyring.delete_password(_SERVICE, _ACCESS_KEY)
-        keyring.delete_password(_SERVICE, _REFRESH_KEY)
+        for key in (_ACCESS_KEY, _REFRESH_KEY):
+            try:
+                keyring.delete_password(_SERVICE, key)
+            except Exception:
+                pass
         api_client.clear_token()
 
     async def login(self, email: str, password: str) -> None:
