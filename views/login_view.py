@@ -5,13 +5,14 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
+from main import resource_path
 from presenters.login_presenter import LoginPresenter
 
 
 class LoginView(QWidget):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/login.ui", self)
+        uic.loadUi(resource_path("ui/login.ui"), self)
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
         self.registerButton.setFixedHeight(20)
         self.registerButton.setCursor(Qt.PointingHandCursor)

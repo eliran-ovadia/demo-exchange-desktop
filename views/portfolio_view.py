@@ -6,6 +6,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from main import resource_path
 from presenters.portfolio_presenter import PortfolioPresenter
 
 _MONO = QFont("Consolas")
@@ -15,7 +16,7 @@ _MONO.setPointSize(13)
 class PortfolioView(QWidget):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/portfolio.ui", self)
+        uic.loadUi(resource_path("ui/portfolio.ui"), self)
         self._error_label = QLabel("")
         self._error_label.setObjectName("errorLabel")
         self._error_label.setWordWrap(True)

@@ -10,6 +10,7 @@ from views.trade_view import TradeView
 from views.history_view import HistoryView
 from views.watchlist_view import WatchlistView
 from views.search_view import SearchView
+from main import resource_path
 
 _NAV_BUTTONS = ["navDashboard", "navPortfolio", "navTrade",
                 "navHistory", "navWatchlist", "navSearch"]
@@ -18,7 +19,7 @@ _NAV_BUTTONS = ["navDashboard", "navPortfolio", "navTrade",
 class MainWindowView(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/main_window.ui", self)
+        uic.loadUi(resource_path("ui/main_window.ui"), self)
 
         self._pages = [
             DashboardView(),

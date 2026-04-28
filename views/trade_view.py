@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QFont
 from PyQt5 import uic
 
+from main import resource_path
 from presenters.trade_presenter import TradePresenter
 
 _MONO = QFont("Consolas")
@@ -14,7 +15,7 @@ _MONO.setPointSize(13)
 class TradeView(QWidget):
     def __init__(self) -> None:
         super().__init__()
-        uic.loadUi("ui/trade.ui", self)
+        uic.loadUi(resource_path("ui/trade.ui"), self)
         self._presenter = TradePresenter(self)
         self._order_type = "buy"
         self.quoteCard.setVisible(False)
