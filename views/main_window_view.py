@@ -31,6 +31,7 @@ class MainWindowView(QMainWindow):
         for page in self._pages:
             self.stackedWidget.addWidget(page)
 
+        self._current_index = 0
         self._wire()
         self._switch(0)
 
@@ -46,6 +47,10 @@ class MainWindowView(QMainWindow):
         )
 
     def _switch(self, index: int) -> None:
+        outgoing = self._pages[self._current_index]
+        if hasattr(outgoing, "on_deactivated"):
+            outgoing.on_deactivated()
+        self._current_index = index
         self.stackedWidget.setCurrentIndex(index)
         self._set_active_nav(index)
         page = self._pages[index]

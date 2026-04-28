@@ -23,7 +23,8 @@ class HistoryPresenter:
             total_items = data.get("total_items", 0)
             self._total_pages = max(1, math.ceil(total_items / PAGE_SIZE))
             self._view.set_page_info(self._page, self._total_pages)
-        except Exception:
+        except Exception as e:
+            self._view.show_error(f"Failed to load history: {e}")
             self._view.set_transactions([])
             self._view.set_page_info(1, 1)
         finally:

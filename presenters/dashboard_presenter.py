@@ -20,6 +20,10 @@ class DashboardPresenter:
             return_exceptions=True,
         )
 
+        if all(isinstance(r, Exception) for r in (portfolio, status, movers)):
+            self._view.show_error(f"Could not reach server: {portfolio}")
+            return
+
         if isinstance(portfolio, dict):
             balance = portfolio.get("balance", {})
             self._view.set_account_value(

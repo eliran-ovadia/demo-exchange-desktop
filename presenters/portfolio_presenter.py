@@ -31,7 +31,8 @@ class PortfolioPresenter:
             total_items = balance.get("total_stocks", 0)
             self._total_pages = max(1, math.ceil(total_items / PAGE_SIZE))
             self._view.set_page_info(self._page, self._total_pages)
-        except Exception:
+        except Exception as e:
+            self._view.show_error(f"Failed to load portfolio: {e}")
             self._view.set_holdings([])
             self._view.set_page_info(1, 1)
         finally:

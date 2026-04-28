@@ -87,7 +87,11 @@ class WatchlistView(QWidget):
         if success:
             self.symbolInput.clear()
 
+    def show_error(self, message: str) -> None:
+        self.set_add_result(False, message)
+
     def set_loading(self, loading: bool) -> None:
         self.addButton.setEnabled(not loading)
         if loading:
+            self.addResultLabel.setText("")
             self.watchlistTable.setRowCount(0)
