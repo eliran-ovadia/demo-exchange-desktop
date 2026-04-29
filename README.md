@@ -137,18 +137,29 @@ python main.py
 
 ## Building an Executable
 
-Uses **PyInstaller** to bundle everything (`.ui` files, QSS theme, assets) into a single binary.
+Uses **PyInstaller** to produce a single `.exe` that bundles the app, all `.ui` files, and the QSS theme.
 
 ```bash
 pip install pyinstaller
+```
 
-# First time — generate the spec (already committed):
-pyinstaller --name "DemoExchange" --windowed --onefile main.py
+**Always build using the committed spec file — never re-run the `pyinstaller` command with flags**, as that regenerates the spec from scratch and loses the bundled assets configuration.
 
-# Subsequent builds — use the spec directly:
+The spec file (`DemoExchange.spec`) is already configured with the required data files:
+
+```python
+datas=[
+    ('styles/theme.qss', 'styles'),   # QSS theme
+    ('ui/*.ui', 'ui'),                 # Qt Designer UI files
+],
+```
+
+To build:
+
+```bash
 pyinstaller DemoExchange.spec
 ```
 
-Output lands in `dist/DemoExchange` (or `dist/DemoExchange.exe` on Windows).
+Output lands in `dist/DemoExchange.exe` on Windows.
 
 > **Note:** PyInstaller builds for the OS you run it on. To produce a Windows `.exe`, build on a Windows machine or use a CI runner with a Windows environment (e.g. GitHub Actions).
