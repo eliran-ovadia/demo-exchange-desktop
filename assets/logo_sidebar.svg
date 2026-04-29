@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176 38">
+  <!-- Small icon (32x32) for dark sidebar -->
+  <rect x="0" y="3" width="32" height="32" rx="7" fill="white" opacity="0.12"/>
+  <!-- Bar chart bars (white) -->
+  <rect x="5"  y="22" width="6" height="11" rx="1.5" fill="white" opacity="0.85"/>
+  <rect x="14" y="15" width="6" height="18" rx="1.5" fill="white"/>
+  <rect x="23" y="9"  width="6" height="24" rx="1.5" fill="white" opacity="0.85"/>
+  <!-- Trend line -->
+  <polyline points="8,19 17,12 26,6"
+            stroke="#93c5fd" stroke-width="1.8"
+            fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="8"  cy="19" r="2" fill="#93c5fd"/>
+  <circle cx="17" cy="12" r="2" fill="#93c5fd"/>
+  <circle cx="26" cy="6"  r="2" fill="#93c5fd"/>
+  <!-- Wordmark -->
+  <text x="42" y="16"
+        font-family="Segoe UI, Arial, sans-serif"
+        font-size="11" font-weight="700"
+        fill="white" opacity="0.6"
+        letter-spacing="1.5">DEMO</text>
+  <text x="42" y="30"
+        font-family="Segoe UI, Arial, sans-serif"
+        font-size="13" font-weight="800"
+        fill="white" letter-spacing="-0.2">Exchange</text>
+</svg>

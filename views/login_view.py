@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
-from main import resource_path
+from main import resource_path, load_svg_pixmap
 from presenters.login_presenter import LoginPresenter
 
 
@@ -16,8 +16,16 @@ class LoginView(QWidget):
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
         self.registerButton.setFixedHeight(20)
         self.registerButton.setCursor(Qt.PointingHandCursor)
+        self._load_logo()
         self._presenter = LoginPresenter(self)
         self._wire()
+
+    def _load_logo(self) -> None:
+        pixmap = load_svg_pixmap("assets/icon.svg", 72, 72)
+        self.logoLabel.setPixmap(pixmap)
+        self.logoLabel.setText("")
+        self.logoLabel.setFixedSize(72, 72)
+        self.logoLabel.setAlignment(Qt.AlignCenter)
 
     def showEvent(self, event) -> None:
         super().showEvent(event)

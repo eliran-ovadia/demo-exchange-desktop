@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
-from main import resource_path
+from main import resource_path, load_svg_pixmap
 from presenters.register_presenter import RegisterPresenter
 
 
@@ -16,8 +16,16 @@ class RegisterView(QWidget):
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
         self.backButton.setFixedHeight(20)
         self.backButton.setCursor(Qt.PointingHandCursor)
+        self._load_logo()
         self._presenter = RegisterPresenter(self)
         self._wire()
+
+    def _load_logo(self) -> None:
+        pixmap = load_svg_pixmap("assets/icon.svg", 72, 72)
+        self.logoLabel.setPixmap(pixmap)
+        self.logoLabel.setText("")
+        self.logoLabel.setFixedSize(72, 72)
+        self.logoLabel.setAlignment(Qt.AlignCenter)
 
     def showEvent(self, event) -> None:
         super().showEvent(event)
