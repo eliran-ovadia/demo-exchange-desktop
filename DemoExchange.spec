@@ -8,6 +8,9 @@ a = Analysis(
     datas=[
         ('styles/theme.qss', 'styles'),
         ('ui/*.ui', 'ui'),
+        ('assets/icon.svg', 'assets'),
+        ('assets/logo_sidebar.svg', 'assets'),
+        ('assets/icon.ico', 'assets'),
     ],
     hiddenimports=[],
     hookspath=[],
@@ -32,6 +35,7 @@ exe = EXE(
     upx=True,
     upx_exclude=[],
     runtime_tmpdir=None,
+    icon='assets/icon.ico',
     console=False,
     disable_windowed_traceback=False,
     argv_emulation=False,

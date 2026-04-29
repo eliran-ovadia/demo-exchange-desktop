@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
 from views.dashboard_view import DashboardView
@@ -10,7 +11,7 @@ from views.trade_view import TradeView
 from views.history_view import HistoryView
 from views.watchlist_view import WatchlistView
 from views.search_view import SearchView
-from main import resource_path
+from main import resource_path, load_svg_pixmap
 
 _NAV_BUTTONS = ["navDashboard", "navPortfolio", "navTrade",
                 "navHistory", "navWatchlist", "navSearch"]
@@ -20,6 +21,7 @@ class MainWindowView(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
         uic.loadUi(resource_path("ui/main_window.ui"), self)
+        self._load_sidebar_logo()
 
         self._pages = [
             DashboardView(),
@@ -35,6 +37,13 @@ class MainWindowView(QMainWindow):
         self._current_index = 0
         self._wire()
         self._switch(0)
+
+    def _load_sidebar_logo(self) -> None:
+        pixmap = load_svg_pixmap("assets/logo_sidebar.svg", 176, 38)
+        self.sidebarLogoLabel.setPixmap(pixmap)
+        self.sidebarLogoLabel.setText("")
+        self.sidebarLogoLabel.setFixedSize(176, 38)
+        self.sidebarLogoLabel.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
 
     def _wire(self) -> None:
         self.navDashboard.clicked.connect(lambda: self._switch(0))

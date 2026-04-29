@@ -2,11 +2,31 @@ import sys, os
 import asyncio
 import qasync
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtGui import QIcon, QPixmap, QPainter
+from PyQt5.QtSvg import QSvgRenderer
+from PyQt5.QtCore import Qt
 
 
 def resource_path(relative: str) -> str:
     base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(base, relative)
+
+
+def load_svg_pixmap(relative: str, width: int, height: int) -> QPixmap:
+    renderer = QSvgRenderer(resource_path(relative))
+    pixmap = QPixmap(width, height)
+    pixmap.fill(Qt.transparent)
+    painter = QPainter(pixmap)
+    renderer.render(painter)
+    painter.end()
+    return pixmap
+
+
+def _build_app_icon() -> QIcon:
+    icon = QIcon()
+    for size in (16, 24, 32, 48, 64, 128, 256):
+        icon.addPixmap(load_svg_pixmap("assets/icon.svg", size, size))
+    return icon
 
 
 def load_stylesheet(app: QApplication) -> None:
@@ -19,6 +39,7 @@ def main() -> None:
     app.setApplicationName("Demo Exchange")
     app.setOrganizationName("DemoExchange")
     app.setApplicationVersion("1.0.0")
+    app.setWindowIcon(_build_app_icon())
 
     load_stylesheet(app)
 
