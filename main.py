@@ -1,4 +1,4 @@
-import sys, os
+import sys, os, platform
 import asyncio
 import qasync
 from PyQt5.QtWidgets import QApplication
@@ -29,9 +29,22 @@ def _build_app_icon() -> QIcon:
     return icon
 
 
+_FONT_STACKS = {
+    "Darwin": '"SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+    "Windows": '"Segoe UI", Arial, sans-serif',
+    "Linux": '"Ubuntu", "DejaVu Sans", Arial, sans-serif',
+}
+
+
 def load_stylesheet(app: QApplication) -> None:
+    font_stack = _FONT_STACKS.get(platform.system(), "Arial, sans-serif")
     with open(resource_path("styles/theme.qss"), "r") as f:
-        app.setStyleSheet(f.read())
+        qss = f.read()
+    qss = qss.replace(
+        '"Segoe UI", "SF Pro Text", "Helvetica Neue", Arial, sans-serif',
+        font_stack,
+    )
+    app.setStyleSheet(qss)
 
 
 def main() -> None:
