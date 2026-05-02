@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import httpx
+import logging
 from typing import Any, Awaitable, Callable
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtCore import Qt
+from config import BASE_URL
 
-BASE_URL = "http://localhost:8000"
+logger = logging.getLogger(__name__)
 TIMEOUT = 15.0
 
 
@@ -49,6 +51,7 @@ class APIClient:
         _retry: bool = False,
     ) -> Any:
         headers = self._auth_headers() if auth else {}
+        logger.debug("%s %s%s params=%s json=%s", method, BASE_URL, path, params, json)
         QApplication.setOverrideCursor(Qt.WaitCursor)
         try:
             response = await self._client.request(
@@ -56,6 +59,7 @@ class APIClient:
             )
         finally:
             QApplication.restoreOverrideCursor()
+        logger.debug("  → %s", response.status_code)
 
         # On 401, attempt one silent token refresh then retry
         if response.status_code == 401 and auth and not _retry and self._refresh_hook:
@@ -71,6 +75,7 @@ class APIClient:
                 detail = response.json().get("detail", response.text)
             except Exception:
                 detail = response.text
+            logger.warning("APIError %s: %s", response.status_code, detail)
             raise APIError(response.status_code, detail)
         if response.status_code == 204:
             return None
