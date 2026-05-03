@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import logging
 import math
 from services.api_client import api_client
+
+logger = logging.getLogger(__name__)
 from models.history import HistoryResponse
 
 if False:
@@ -17,6 +20,7 @@ class HistoryPresenter:
         self._total_pages = 1
 
     async def load_page(self) -> None:
+        logger.debug("Loading history page %d", self._page)
         self._view.set_loading(True)
         try:
             data = await api_client.get_history(page=self._page, page_size=PAGE_SIZE)
@@ -24,7 +28,9 @@ class HistoryPresenter:
             self._view.set_transactions([t.model_dump() for t in resp.history])
             self._total_pages = max(1, math.ceil(resp.total_items / PAGE_SIZE))
             self._view.set_page_info(self._page, self._total_pages)
+            logger.debug("History page %d loaded: %d transactions", self._page, len(resp.history))
         except Exception as e:
+            logger.warning("History load error (page %d): %s", self._page, e)
             self._view.show_error(f"Failed to load history: {e}")
             self._view.set_transactions([])
             self._view.set_page_info(1, 1)

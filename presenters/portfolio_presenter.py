@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import logging
 import math
 from services.api_client import api_client
+
+logger = logging.getLogger(__name__)
 from models.portfolio import PortfolioResponse
 
 if False:
@@ -17,6 +20,7 @@ class PortfolioPresenter:
         self._total_pages = 1
 
     async def load_page(self) -> None:
+        logger.debug("Loading portfolio page %d", self._page)
         self._view.set_loading(True)
         try:
             data = await api_client.get_portfolio(page=self._page, page_size=PAGE_SIZE)
@@ -31,7 +35,9 @@ class PortfolioPresenter:
             self._view.set_holdings([h.model_dump() for h in resp.portfolio])
             self._total_pages = max(1, math.ceil(resp.balance.total_stocks / PAGE_SIZE))
             self._view.set_page_info(self._page, self._total_pages)
+            logger.debug("Portfolio page %d loaded: %d holdings", self._page, len(resp.portfolio))
         except Exception as e:
+            logger.warning("Portfolio load error (page %d): %s", self._page, e)
             self._view.show_error(f"Failed to load portfolio: {e}")
             self._view.set_holdings([])
             self._view.set_page_info(1, 1)

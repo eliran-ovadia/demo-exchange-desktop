@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 from services.api_client import api_client, APIError
+
+logger = logging.getLogger(__name__)
 from models.market import SearchResponse, ParsedQuoteResponse, SentimentEntry
 
 if False:
@@ -14,21 +17,26 @@ class SearchPresenter:
         self._selected_symbol: str = ""
 
     async def search(self, query: str) -> None:
+        logger.debug("Searching: %s", query)
         self._view.set_loading_search(True)
         try:
             data = await api_client.search(query)
             resp = SearchResponse.model_validate(data)
+            logger.debug("Search '%s' returned %d results", query, len(resp.results))
             self._view.set_results([r.model_dump() for r in resp.results])
         except APIError as e:
+            logger.warning("Search error for '%s': %s", query, e.detail)
             self._view.show_search_error(f"Search failed: {e.detail}")
             self._view.set_results([])
         except Exception as e:
+            logger.error("Search unexpected error for '%s'", query, exc_info=True)
             self._view.show_search_error(f"Search failed: {e}")
             self._view.set_results([])
         finally:
             self._view.set_loading_search(False)
 
     async def load_detail(self, symbol: str) -> None:
+        logger.debug("Loading detail: %s", symbol)
         self._selected_symbol = symbol
         quote_raw, sentiment_raw = await asyncio.gather(
             api_client.get_quote(symbol),
@@ -73,8 +81,11 @@ class SearchPresenter:
             return
         try:
             await api_client.add_to_watchlist(self._selected_symbol)
+            logger.info("Added to watchlist: %s", self._selected_symbol)
             self._view.show_watchlist_result(True, f"{self._selected_symbol} added to watchlist.")
         except APIError as e:
+            logger.warning("Watchlist add error for %s: %s", self._selected_symbol, e.detail)
             self._view.show_watchlist_result(False, f"Could not add: {e.detail}")
         except Exception as e:
+            logger.error("Watchlist add unexpected error for %s", self._selected_symbol, exc_info=True)
             self._view.show_watchlist_result(False, f"Could not add: {e}")

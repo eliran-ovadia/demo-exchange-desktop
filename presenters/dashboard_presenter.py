@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import asyncio
+import logging
 from services.api_client import api_client
+
+logger = logging.getLogger(__name__)
 from models.portfolio import PortfolioResponse
 from models.market import MarketStatusResponse, MarketMoversResponse
 
@@ -14,6 +17,7 @@ class DashboardPresenter:
         self._view = view
 
     async def refresh_data(self) -> None:
+        logger.debug("Dashboard refresh started")
         self._view.show_loading(True)
         portfolio_raw, status_raw, movers_raw = await asyncio.gather(
             api_client.get_portfolio(page_size=1),
@@ -31,9 +35,11 @@ class DashboardPresenter:
                     resp.balance.total_return_percent,
                 )
             except Exception as e:
+                logger.warning("Could not parse portfolio data: %s", e)
                 self._view.show_error(f"Could not parse account data: {e}")
                 self._view.set_account_value(0.0, 0.0, 0.0)
         else:
+            logger.warning("Portfolio fetch failed: %s", portfolio_raw)
             self._view.show_error(f"Could not load account data: {portfolio_raw}")
             self._view.set_account_value(0.0, 0.0, 0.0)
 
@@ -70,3 +76,5 @@ class DashboardPresenter:
                 self._view.set_movers([], [])
         else:
             self._view.set_movers([], [])
+
+        logger.debug("Dashboard refresh complete")
