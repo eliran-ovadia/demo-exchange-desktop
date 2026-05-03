@@ -1,10 +1,13 @@
 import sys, os, platform
 import asyncio
+import logging
 import qasync
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QIcon, QPixmap, QPainter
 from PyQt5.QtSvg import QSvgRenderer
 from PyQt5.QtCore import Qt
+
+logger = logging.getLogger(__name__)
 
 
 def resource_path(relative: str) -> str:
@@ -47,6 +50,15 @@ def load_stylesheet(app: QApplication) -> None:
     app.setStyleSheet(qss)
 
 
+def _async_exception_handler(loop: asyncio.AbstractEventLoop, context: dict) -> None:
+    exception = context.get("exception")
+    message = context.get("message", "no message")
+    if exception:
+        logger.error("Unhandled async exception: %s", message, exc_info=exception)
+    else:
+        logger.error("Unhandled async error: %s", message)
+
+
 def main() -> None:
     app = QApplication(sys.argv)
     app.setApplicationName("Demo Exchange")
@@ -58,6 +70,7 @@ def main() -> None:
 
     loop = qasync.QEventLoop(app)
     asyncio.set_event_loop(loop)
+    loop.set_exception_handler(_async_exception_handler)
 
     # Import after event loop is set
     from services.auth_service import auth_service
