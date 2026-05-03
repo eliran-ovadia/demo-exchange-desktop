@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QMainWindow
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
@@ -11,6 +10,7 @@ from views.trade_view import TradeView
 from views.history_view import HistoryView
 from views.watchlist_view import WatchlistView
 from views.search_view import SearchView
+import asyncio
 from main import resource_path, load_svg_pixmap
 
 _NAV_BUTTONS = ["navDashboard", "navPortfolio", "navTrade",

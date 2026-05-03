@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QLabel
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+import asyncio
 from main import resource_path
 from presenters.portfolio_presenter import PortfolioPresenter
 

@@ -57,6 +57,9 @@ class APIClient:
             response = await self._client.request(
                 method, path, json=json, data=data, params=params, headers=headers
             )
+        except httpx.TransportError as exc:
+            logger.warning("Network error on %s %s: %s", method, path, exc)
+            raise APIError(0, "Could not reach server. Check your connection.") from exc
         finally:
             QApplication.restoreOverrideCursor()
         logger.debug("  → %s", response.status_code)

@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
+import asyncio
 from main import resource_path, load_svg_pixmap
 from presenters.login_presenter import LoginPresenter
 

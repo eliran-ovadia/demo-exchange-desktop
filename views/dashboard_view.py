@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+import asyncio
+from async_utils import schedule_replacing
 from main import resource_path
 from presenters.dashboard_presenter import DashboardPresenter
 
@@ -19,11 +20,10 @@ class DashboardView(QWidget):
         super().__init__()
         uic.loadUi(resource_path("ui/dashboard.ui"), self)
         self._presenter = DashboardPresenter(self)
+        self._refresh_task: asyncio.Task | None = None
         self._refresh_timer = QTimer(self)
         self._refresh_timer.setInterval(_REFRESH_INTERVAL_MS)
-        self._refresh_timer.timeout.connect(
-            lambda: asyncio.ensure_future(self._presenter.refresh_data())
-        )
+        self._refresh_timer.timeout.connect(self._on_refresh_timer)
         self._setup_tables()
 
     def _setup_tables(self) -> None:
@@ -34,8 +34,15 @@ class DashboardView(QWidget):
             table.verticalHeader().setVisible(False)
             table.setAlternatingRowColors(True)
 
+    def _on_refresh_timer(self) -> None:
+        self._refresh_task = schedule_replacing(
+            self._presenter.refresh_data(), self._refresh_task
+        )
+
     def on_activated(self) -> None:
-        asyncio.ensure_future(self._presenter.refresh_data())
+        self._refresh_task = schedule_replacing(
+            self._presenter.refresh_data(), self._refresh_task
+        )
         self._refresh_timer.start()
 
     def on_deactivated(self) -> None:

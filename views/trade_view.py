@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QFont
 from PyQt5 import uic
 
+import asyncio
 from main import resource_path
 from presenters.trade_presenter import TradePresenter
 

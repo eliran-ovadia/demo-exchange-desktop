@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QLabel
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+import asyncio
+from async_utils import Debouncer
 from main import resource_path
 from presenters.search_presenter import SearchPresenter
 
@@ -18,6 +19,7 @@ class SearchView(QWidget):
         super().__init__()
         uic.loadUi(resource_path("ui/search.ui"), self)
         self._presenter = SearchPresenter(self)
+        self._detail_debouncer = Debouncer(150)
         self._setup_table()
         self._wire()
         self.detailPanel.setVisible(False)
@@ -59,8 +61,9 @@ class SearchView(QWidget):
         if row >= 0:
             symbol_item = self.resultsTable.item(row, 0)
             if symbol_item:
-                asyncio.ensure_future(
-                    self._presenter.load_detail(symbol_item.text())
+                symbol = symbol_item.text()
+                self._detail_debouncer.schedule(
+                    lambda: self._presenter.load_detail(symbol)
                 )
 
     def on_activated(self) -> None:
