@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
-from async_utils import schedule
+import asyncio
 from main import resource_path, load_svg_pixmap
 from presenters.register_presenter import RegisterPresenter
 
@@ -35,11 +35,11 @@ class RegisterView(QWidget):
 
     def _wire(self) -> None:
         self.createButton.clicked.connect(
-            lambda: schedule(self._presenter.handle_register())
+            lambda: asyncio.ensure_future(self._presenter.handle_register())
         )
         self.backButton.clicked.connect(self._presenter.navigate_to_login)
         self.confirmInput.returnPressed.connect(
-            lambda: schedule(self._presenter.handle_register())
+            lambda: asyncio.ensure_future(self._presenter.handle_register())
         )
 
     # ── Presenter API ──────────────────────────────────────────

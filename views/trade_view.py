@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QFont
 from PyQt5 import uic
 
-from async_utils import schedule
+import asyncio
 from main import resource_path
 from presenters.trade_presenter import TradePresenter
 
@@ -29,13 +29,13 @@ class TradeView(QWidget):
         self.sellButton.clicked.connect(lambda: self._set_order_type("sell"))
         self.sharesInput.valueChanged.connect(self._update_estimated_total)
         self.placeOrderButton.clicked.connect(
-            lambda: schedule(self._presenter.place_order())
+            lambda: asyncio.ensure_future(self._presenter.place_order())
         )
 
     def _on_get_quote(self) -> None:
         symbol = self.symbolInput.text().strip().upper()
         if symbol:
-            schedule(self._presenter.load_quote(symbol))
+            asyncio.ensure_future(self._presenter.load_quote(symbol))
 
     def _set_order_type(self, order_type: str) -> None:
         self._order_type = order_type

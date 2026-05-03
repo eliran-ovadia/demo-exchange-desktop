@@ -5,7 +5,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
-from async_utils import schedule
+import asyncio
+from async_utils import Debouncer
 from main import resource_path
 from presenters.search_presenter import SearchPresenter
 
@@ -18,6 +19,7 @@ class SearchView(QWidget):
         super().__init__()
         uic.loadUi(resource_path("ui/search.ui"), self)
         self._presenter = SearchPresenter(self)
+        self._detail_debouncer = Debouncer(150)
         self._setup_table()
         self._wire()
         self.detailPanel.setVisible(False)
@@ -46,20 +48,23 @@ class SearchView(QWidget):
         self.searchInput.returnPressed.connect(self._on_search)
         self.resultsTable.itemSelectionChanged.connect(self._on_result_selected)
         self.addToWatchlistButton.clicked.connect(
-            lambda: schedule(self._presenter.add_to_watchlist())
+            lambda: asyncio.ensure_future(self._presenter.add_to_watchlist())
         )
 
     def _on_search(self) -> None:
         query = self.searchInput.text().strip()
         if query:
-            schedule(self._presenter.search(query))
+            asyncio.ensure_future(self._presenter.search(query))
 
     def _on_result_selected(self) -> None:
         row = self.resultsTable.currentRow()
         if row >= 0:
             symbol_item = self.resultsTable.item(row, 0)
             if symbol_item:
-                schedule(self._presenter.load_detail(symbol_item.text()))
+                symbol = symbol_item.text()
+                self._detail_debouncer.schedule(
+                    lambda: self._presenter.load_detail(symbol)
+                )
 
     def on_activated(self) -> None:
         pass  # user initiates searches

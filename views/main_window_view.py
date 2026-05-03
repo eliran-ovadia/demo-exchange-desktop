@@ -10,7 +10,7 @@ from views.trade_view import TradeView
 from views.history_view import HistoryView
 from views.watchlist_view import WatchlistView
 from views.search_view import SearchView
-from async_utils import schedule
+import asyncio
 from main import resource_path, load_svg_pixmap
 
 _NAV_BUTTONS = ["navDashboard", "navPortfolio", "navTrade",
@@ -53,7 +53,7 @@ class MainWindowView(QMainWindow):
         self.navWatchlist.clicked.connect(lambda: self._switch(4))
         self.navSearch.clicked.connect(lambda: self._switch(5))
         self.logoutButton.clicked.connect(
-            lambda: schedule(self._handle_logout())
+            lambda: asyncio.ensure_future(self._handle_logout())
         )
 
     def _switch(self, index: int) -> None:
