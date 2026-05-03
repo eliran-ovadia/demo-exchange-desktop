@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QLabel
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from async_utils import schedule
 from main import resource_path
 from presenters.search_presenter import SearchPresenter
 
@@ -46,22 +46,20 @@ class SearchView(QWidget):
         self.searchInput.returnPressed.connect(self._on_search)
         self.resultsTable.itemSelectionChanged.connect(self._on_result_selected)
         self.addToWatchlistButton.clicked.connect(
-            lambda: asyncio.ensure_future(self._presenter.add_to_watchlist())
+            lambda: schedule(self._presenter.add_to_watchlist())
         )
 
     def _on_search(self) -> None:
         query = self.searchInput.text().strip()
         if query:
-            asyncio.ensure_future(self._presenter.search(query))
+            schedule(self._presenter.search(query))
 
     def _on_result_selected(self) -> None:
         row = self.resultsTable.currentRow()
         if row >= 0:
             symbol_item = self.resultsTable.item(row, 0)
             if symbol_item:
-                asyncio.ensure_future(
-                    self._presenter.load_detail(symbol_item.text())
-                )
+                schedule(self._presenter.load_detail(symbol_item.text()))
 
     def on_activated(self) -> None:
         pass  # user initiates searches

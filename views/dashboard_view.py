@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from async_utils import schedule
 from main import resource_path
 from presenters.dashboard_presenter import DashboardPresenter
 
@@ -22,7 +22,7 @@ class DashboardView(QWidget):
         self._refresh_timer = QTimer(self)
         self._refresh_timer.setInterval(_REFRESH_INTERVAL_MS)
         self._refresh_timer.timeout.connect(
-            lambda: asyncio.ensure_future(self._presenter.refresh_data())
+            lambda: schedule(self._presenter.refresh_data())
         )
         self._setup_tables()
 
@@ -35,7 +35,7 @@ class DashboardView(QWidget):
             table.setAlternatingRowColors(True)
 
     def on_activated(self) -> None:
-        asyncio.ensure_future(self._presenter.refresh_data())
+        schedule(self._presenter.refresh_data())
         self._refresh_timer.start()
 
     def on_deactivated(self) -> None:

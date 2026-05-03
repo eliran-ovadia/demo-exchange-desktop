@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5 import uic
 
+from async_utils import schedule
 from main import resource_path, load_svg_pixmap
 from presenters.login_presenter import LoginPresenter
 
@@ -39,7 +39,7 @@ class LoginView(QWidget):
         self.passwordInput.returnPressed.connect(self._on_login_clicked)
 
     def _on_login_clicked(self) -> None:
-        asyncio.ensure_future(self._presenter.handle_login())
+        schedule(self._presenter.handle_login())
 
     def _on_register_clicked(self) -> None:
         self._presenter.navigate_to_register()

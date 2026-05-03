@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from async_utils import schedule
 from main import resource_path
 from presenters.watchlist_presenter import WatchlistPresenter
 
@@ -34,19 +34,19 @@ class WatchlistView(QWidget):
         self.addButton.clicked.connect(self._on_add)
         self.symbolInput.returnPressed.connect(self._on_add)
         self.removeButton.clicked.connect(
-            lambda: asyncio.ensure_future(self._presenter.remove_selected())
+            lambda: schedule(self._presenter.remove_selected())
         )
 
     def _on_add(self) -> None:
         symbol = self.symbolInput.text().strip().upper()
         if symbol:
-            asyncio.ensure_future(self._presenter.add_symbol(symbol))
+            schedule(self._presenter.add_symbol(symbol))
 
     def _on_selection_changed(self) -> None:
         self.removeButton.setEnabled(bool(self.watchlistTable.selectedItems()))
 
     def on_activated(self) -> None:
-        asyncio.ensure_future(self._presenter.load())
+        schedule(self._presenter.load())
 
     # ── Presenter API ──────────────────────────────────────────
 

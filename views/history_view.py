@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-import asyncio
 from PyQt5.QtWidgets import QWidget, QTableWidgetItem, QHeaderView, QLabel
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QColor, QFont
 from PyQt5 import uic
 
+from async_utils import schedule
 from main import resource_path
 from presenters.history_presenter import HistoryPresenter
 
@@ -39,14 +39,14 @@ class HistoryView(QWidget):
 
     def _wire(self) -> None:
         self.prevButton.clicked.connect(
-            lambda: asyncio.ensure_future(self._presenter.prev_page())
+            lambda: schedule(self._presenter.prev_page())
         )
         self.nextButton.clicked.connect(
-            lambda: asyncio.ensure_future(self._presenter.next_page())
+            lambda: schedule(self._presenter.next_page())
         )
 
     def on_activated(self) -> None:
-        asyncio.ensure_future(self._presenter.load_page())
+        schedule(self._presenter.load_page())
 
     # ── Presenter API ──────────────────────────────────────────
 
