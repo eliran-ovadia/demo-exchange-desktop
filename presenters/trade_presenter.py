@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import logging
 from services.api_client import api_client, APIError
-
-logger = logging.getLogger(__name__)
 from models.market import ParsedQuoteResponse
 from models.order import AfterOrder
+
+logger = logging.getLogger(__name__)
 
 if False:
     from views.trade_view import TradeView
